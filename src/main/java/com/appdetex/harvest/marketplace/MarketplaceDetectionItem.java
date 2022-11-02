@@ -15,10 +15,18 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
     private String currency;
     private String seller;
 
-
-
-
-
+    public MarketplaceDetectionItem(String detectionDate, String title, String description, String url, String imgUrl, int order, boolean paidSearch, double price, String currency, String seller) {
+        this.detectionDate = detectionDate;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.imgUrl = imgUrl;
+        this.order = order;
+        this.paidSearch = paidSearch;
+        this.price = price;
+        this.currency = currency;
+        this.seller = seller;
+    }
 
     @Override
     public String getDetectionDate() {
@@ -32,41 +40,41 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
 
     @Override
     public String getDescription() {
-        return null;
+        return description;
     }
 
     @Override
     public String getUrl() {
-        return null;
+        return url;
     }
 
     @Override
     public String getImgUrl() {
-        return null;
+        return imgUrl;
     }
 
     @Override
     public int getOrder() {
-        return 0;
+        return order;
     }
 
     @Override
-    public Boolean isPaidSearch() {
-        return null;
+    public boolean isPaidSearch() {
+        return paidSearch;
     }
 
     @Override
     public Double getPrice() {
-        return null;
+        return price;
     }
 
     @Override
     public String getCurrency() {
-        return null;
+        return currency;
     }
 
     @Override
     public String getSeller() {
-        return null;
+        return seller;
     }
 }
