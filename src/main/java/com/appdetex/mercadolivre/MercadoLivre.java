@@ -1,4 +1,4 @@
-package org.example;
+package com.appdetex.mercadolivre;
 
 import java.io.*;
 
@@ -11,8 +11,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
+import com.appdetex.harvest.api.MarketplaceDetection;
+import com.appdetex.harvest.api.MarketplaceHarvester;
 import com.opencsv.CSVWriter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,13 +24,12 @@ import org.jsoup.select.Elements;
 import org.owasp.encoder.Encode;
 
 
-public class Main {
+public class MercadoLivre implements MarketplaceHarvester {
 
-    static String jacuzziDescription;
-
-    public static void main(String[] args) {
+    public List<MarketplaceDetection> parseTarget(String term, int numItems) {
         try {
-            // Here we create a document object and use JSoup to fetch the website
+
+            String url = String.format("https://lista.mercadolivre.com.br/", term);
             Document doc = Jsoup.connect("https://lista.mercadolivre.com.br/jacuzzi#D[A:jacuzzi]").get();
 
             // With the document fetched, we use JSoup's title() method to fetch the title
@@ -39,12 +41,11 @@ public class Main {
             int orderInPage=0;
 
 
-            for (int i=0; i<10;i++){
+            for (int i=0; i<numItems;i++){
                 orderInPage++;
 
 
                 String jacuzziName = GetProductName(jacuzzi.get(i));
-                System.out.println(jacuzziName);
 
                 String jacuzziPriceProcessed =GetProductPrice(jacuzzi.get(i));
 
@@ -52,19 +53,11 @@ public class Main {
 
                 String jacuzziImage = GetProductImageUrl(jacuzzi.get(i));
 
-                //String jacuzziDescription = GetProductDescription(jacuzzi.get(i));
+                String jacuzziDescription = GetProductDescription(jacuzzi.get(i));
 
                 String paidSponsor = GetSponsor(jacuzzi.get(i));
 
                 String stringDate= GetDateOfDetection(jacuzzi.get(i));
-
-
-
-
-                Document jacuzziPage = Jsoup.connect(jacuzziListing).get();
-                Thread.sleep(1000);
-                jacuzziDescription = jacuzziPage.select(" div.ui-pdp-description > p.ui-pdp-description__content").text();
-
 
 
 
@@ -79,10 +72,7 @@ public class Main {
                 productInfo.add(stringDate);
 
 
-
-
-
-                //System.out.println("Product name: " + jacuzziTitle );
+                System.out.println("Product name: "+jacuzziName);
                 System.out.println("\t" + "Price: " + jacuzziPriceProcessed + " BRL");
                 System.out.println("\t" + "Listing URL: " + jacuzziListing);
                 System.out.println("\t" + "Image URL: " + jacuzziImage);
@@ -102,6 +92,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        return null;
     }
 
     static String GetProductName(Element jacuzzi){
@@ -136,33 +127,29 @@ public class Main {
         return jacuzziListing;
     }
 
-    /*
-    static String GetProductDescription(Element jacuzzi) throws IOException {
-        Element jacuzziListingURL = jacuzzi.select(".ui-search-result__content.ui-search-link").first();
-        String jacuzziListing = jacuzziListingURL.attr("href");
 
+    static String GetProductDescription(Element jacuzzi) throws IOException, InterruptedException {
+        String jacuzziListing= GetProductUrl(jacuzzi);
 
         Document jacuzziPage = Jsoup.connect(jacuzziListing).get();
+
+        Thread.sleep(1000);
+
         String jacuzziDescription =jacuzziPage.select(" div.ui-pdp-description > p.ui-pdp-description__content").text();
         return jacuzziDescription;
     }
 
-     */
+
 
 
     static String GetSponsor(Element jacuzzi){
         Element paidSearch = jacuzzi.select("div.ui-search-item__ad-container > span.ui-search-item__ad-label.ui-search-item__ad-label--blue").first();
-
         String paidSponsor = "";
 
-
         if (paidSearch != null){
-
             paidSponsor = "Paid Search";
-
         }
         else {
-
             paidSponsor="No Paid Search";
         }
         return paidSponsor;
@@ -177,27 +164,20 @@ public class Main {
     }
 
     public static void CsvExporter(ArrayList<String> productInfo){
-        /*
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String stringDate = dateFormat.format(date);
-         */
-
-        //System.out.println(productInfo);
-
 
         try {
             Path path = Paths.get("/tmp/csvFilesWebScraping/csvFile.csv");
+            Path path2 = Paths.get("csvFile.csv");
             if(!Files.exists(path)) {
                 String[] top = {"Product name", "price", "listing url", "image url", "Description", "sponsored", "order in page", "date"};
 
-                FileWriter csvFile = new FileWriter("/tmp/csvFilesWebScraping/csvFile.csv");
+                FileWriter csvFile = new FileWriter(path2.toFile());
                 CSVWriter write = new CSVWriter(csvFile);
                 write.writeNext(top);
                 write.close();
             }
 
-            FileWriter csvFile2 = new FileWriter("/tmp/csvFilesWebScraping/csvFile.csv",true);
+            FileWriter csvFile2 = new FileWriter(path2.toFile(),true);
             CSVWriter write2 = new CSVWriter(csvFile2);
             String[] csvExported = productInfo.toArray(new String[0]);
             write2.writeNext(csvExported);
