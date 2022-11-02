@@ -1,0 +1,6 @@
+com/appdetex/harvest/marketplace/DecathlonHarvester.class
+com/appdetex/harvest/api/MarketplaceDetection.class
+com/appdetex/harvest/marketplace/MarketplaceDetectionItem.class
+com/appdetex/harvest/api/Main.class
+com/appdetex/harvest/marketplace/DecathlonExporter.class
+com/appdetex/harvest/api/MarketplaceHarvester.class

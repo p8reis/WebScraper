@@ -17,7 +17,7 @@ public class DecathlonExporter {
     public void exportDecathlon() throws IOException {
 
         // Initializes the file where the detections will be saved
-        String filePath = "/Users/pedro.reis/Desktop/DetectionsOutput/Detections.csv";
+        String filePath = "/tmp/DetectionsOutput/Detections.csv";
         FileWriter csvFile = new FileWriter(filePath, true);
         PrintWriter detectionsFile = new PrintWriter(csvFile);
 
