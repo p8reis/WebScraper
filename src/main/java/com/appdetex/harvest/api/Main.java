@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args){
         MercadoLivre mercadoLivre = new MercadoLivre();
         mercadoLivre.parseTarget("jacuzzi",3);
+        //teste123
 
     }
 }
