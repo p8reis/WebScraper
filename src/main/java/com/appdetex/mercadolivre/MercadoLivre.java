@@ -44,7 +44,6 @@ public class MercadoLivre implements MarketplaceHarvester {
             for (int i=0; i<numItems;i++){
                 orderInPage++;
 
-
                 String jacuzziName = GetProductName(jacuzzi.get(i));
 
                 String jacuzziPriceProcessed =GetProductPrice(jacuzzi.get(i));
