@@ -14,16 +14,19 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
 
     private String description;
 
+    private String seller;
+
     private String paid;
 
     private String price;
 
-    public MarketplaceDetectionItem(String order, String title, String url, String imageUrl, String description, String paid, String price) {
+    public MarketplaceDetectionItem(String order, String title, String url, String imageUrl, String description, String seller, String paid, String price) {
         this.order = order;
         this.title = title;
         this.url = url;
         this.imageUrl = imageUrl;
         this.description = description;
+        this.seller = seller;
         this.paid = paid;
         this.price = price;
     }
@@ -55,6 +58,11 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
 
     @Override
     public String description() {
+        return null;
+    }
+
+    @Override
+    public String seller() {
         return null;
     }
 

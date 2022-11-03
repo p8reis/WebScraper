@@ -14,5 +14,7 @@ public interface MarketplaceDetection {
 
     String description();
 
+    String seller();
+
     Boolean isPaid();
 }

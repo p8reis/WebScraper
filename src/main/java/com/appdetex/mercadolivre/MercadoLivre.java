@@ -54,6 +54,8 @@ public class MercadoLivre implements MarketplaceHarvester {
 
                 String jacuzziDescription = GetProductDescription(jacuzzi.get(i));
 
+                String jacuzziSeller = GetSellerName(jacuzzi.get(i));
+
                 String paidSponsor = GetSponsor(jacuzzi.get(i));
 
                 String stringDate= GetDateOfDetection(jacuzzi.get(i));
@@ -66,6 +68,7 @@ public class MercadoLivre implements MarketplaceHarvester {
                 productInfo.add(jacuzziListing);
                 productInfo.add(jacuzziImage);
                 productInfo.add(jacuzziDescription);
+                productInfo.add(jacuzziSeller);
                 productInfo.add(paidSponsor);
                 productInfo.add(String.valueOf(orderInPage));
                 productInfo.add(stringDate);
@@ -76,6 +79,7 @@ public class MercadoLivre implements MarketplaceHarvester {
                 System.out.println("\t" + "Listing URL: " + jacuzziListing);
                 System.out.println("\t" + "Image URL: " + jacuzziImage);
                 System.out.println("\t"+ "Description: " + jacuzziDescription);
+                System.out.println("\t"+"Seller: " + jacuzziSeller);
                 System.out.println("\t" + "Sponsored: " + paidSponsor);
                 System.out.println("\t" + "Order In Page:" + orderInPage);
                 System.out.println("\n");
@@ -138,6 +142,23 @@ public class MercadoLivre implements MarketplaceHarvester {
         return jacuzziDescription;
     }
 
+    static String GetSellerName(Element jacuzzi) throws InterruptedException, IOException {
+        String jacuzziListing = GetProductUrl(jacuzzi);
+
+        Document jacuzziPage= Jsoup.connect(jacuzziListing).get();
+        Thread.sleep(1000);
+
+        Element jacuzziSellerElement = jacuzziPage.select("a.ui-pdp-media__action.ui-box-component__action").first();
+        String jacuzziSellerUrl = jacuzziSellerElement.attr("href");
+
+        Document jacuzziSeller = Jsoup.connect(jacuzziSellerUrl).get();
+        String jacuzziSellerName = jacuzziSeller.select("div.store-info-title > h3.store-info__name").text();
+
+
+
+        return jacuzziSellerName;
+    }
+
 
 
 
@@ -168,7 +189,7 @@ public class MercadoLivre implements MarketplaceHarvester {
             Path path = Paths.get("/tmp/csvFilesWebScraping/csvFile.csv");
             Path path2 = Paths.get("csvFile.csv");
             if(!Files.exists(path)) {
-                String[] top = {"Product name", "price", "listing url", "image url", "Description", "sponsored", "order in page", "date"};
+                String[] top = {"Product name", "Price", "Listing url", "Image url", "Description","Seller", "Sponsored", "Order in page", "Date"};
 
                 FileWriter csvFile = new FileWriter(path2.toFile());
                 CSVWriter write = new CSVWriter(csvFile);
