@@ -73,7 +73,6 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
         return currency;
     }
 
-    @Override
     public String getSeller() {
         return seller;
     }
