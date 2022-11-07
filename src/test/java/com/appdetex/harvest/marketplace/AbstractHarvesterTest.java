@@ -5,38 +5,34 @@ import com.appdetex.harvest.api.MarketplaceDetection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
-class AmazonHarvesterTest {
+abstract class AbstractHarvesterTest {
 
-    @Test
-    void testWithExpectedResults() {
-        AmazonHarvester harvest = new AmazonHarvester();
-        List<MarketplaceDetection> detections = null;
-        try {
-            Document doc = getHtml("/amazon.html");
-            detections = harvest.parseTargetInternal(doc, 10); //27.03
-            Assertions.assertNotNull(detections);
-            Assertions.assertTrue(detections.size() <= 10, "Expecting 10 or less!");
-        } catch (HarvestException e) {
-            throw new RuntimeException(e);
-        }
+    private String expectedHtml;
+    private AbstractHarvester harvester;
+
+    public AbstractHarvesterTest(AbstractHarvester harvester, String expectedHtml) {
+        this.harvester = harvester;
+        this.expectedHtml = expectedHtml;
     }
 
-    @Test
-    void testEmptyCase() {
-        AmazonHarvester harvest = new AmazonHarvester();
+    @ParameterizedTest
+    @ValueSource (ints = {0, 5, 10, 20})
+    void testWithExpectedResults(int numResults) {
         List<MarketplaceDetection> detections = null;
         try {
-            Document doc = getHtml("/amazon-empty.html");
-            detections = harvest.parseTargetInternal(doc, 10);
+            Document doc = getHtml(expectedHtml);
+            detections = harvester.parseTargetInternal(doc, numResults);
             Assertions.assertNotNull(detections);
-            Assertions.assertTrue(detections.size() == 0, "Expecting no items!");
+            Assertions.assertTrue(detections.size() <= numResults, "Expecting " + numResults);
         } catch (HarvestException e) {
             throw new RuntimeException(e);
         }
@@ -59,6 +55,5 @@ class AmazonHarvesterTest {
             throw new RuntimeException(e);
         }
     }
-
 
 }
