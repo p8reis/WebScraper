@@ -2,17 +2,13 @@ package com.appdetex.harvest.api;
 
 public interface MarketplaceDetection {
 
-    String getOrder();
-
+    String getCaptureDate();
+    Integer getOrder();
     String getTitle();
-
-    String getProdLink();
-
-    String getImageLink();
-
+    String getDescription();
+    String getUrl();
+    String getImageUrl();
     String getPrice();
-
-    String description();
-
-    Boolean isPaid();
+    Boolean getPaidSearch();
+    String getSeller();
 }
