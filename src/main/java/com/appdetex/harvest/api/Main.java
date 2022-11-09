@@ -1,13 +1,12 @@
 package com.appdetex.harvest.api;
 
-import com.appdetex.mercadolivre.MercadoLivre;
+import com.appdetex.harvest.marketplace.AbstractHarvester;
+
+import java.io.IOException;
+
 
 public class Main {
-
-
-    public static void main(String[] args){
-        MercadoLivre mercadoLivre = new MercadoLivre();
-        mercadoLivre.parseTarget("jacuzzi",3);
+    public static void main(String[] args) throws IOException {
 
     }
 }

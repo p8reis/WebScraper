@@ -6,8 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="proof-of-concept" />
-        <module name="WebScraper" />
+        <module name="Web_Scraping" />
       </profile>
     </annotationProcessing>
   </component>
