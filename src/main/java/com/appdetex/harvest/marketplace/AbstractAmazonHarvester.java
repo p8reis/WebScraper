@@ -6,7 +6,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 
 public abstract class AbstractAmazonHarvester extends AbstractHarvester {
@@ -21,6 +20,7 @@ public abstract class AbstractAmazonHarvester extends AbstractHarvester {
     @Override
     protected MarketplaceDetection createDetection(Element src, int idx) {
 
+        if (src.select("a").attr("href").contains("/gp/bestsellers/")) { return null; }
         String captureDate = getCaptureDate();
         String url = "https://www.amazon.es" + src.select("a").attr("href");
         String imageUrl = src.select("img.s-image").attr("src");
@@ -50,6 +50,9 @@ public abstract class AbstractAmazonHarvester extends AbstractHarvester {
         try {
             Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
             seller = src.select("div.tabular-buybox-text span.a-size-small a").text();
+            if (seller.isEmpty()) {
+                seller = src.select("div#bylineInfo_feature_div.celwidget").text().replace("Visita la Store de ", "");
+            }
         } catch (IOException e) { e.printStackTrace(); }
         return seller;
     }
