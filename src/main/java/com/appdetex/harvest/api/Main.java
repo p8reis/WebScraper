@@ -16,9 +16,6 @@ public class Main {
         AmazonEsHarvester amazonEsHarvester = new AmazonEsHarvester();
         amazonEsHarvester.parseTarget(term, numItems);
 
-        AmazonUsHarvester amazonUsHarvester = new AmazonUsHarvester();
-        amazonUsHarvester.parseTarget(term, numItems);
-
         DecathlonPtHarvester decathlonPtHarvester = new DecathlonPtHarvester();
         decathlonPtHarvester.parseTarget(term, numItems);
     }
