@@ -22,8 +22,7 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
 
         String captureDate = getCaptureDate();
         String url = src.select(".ui-search-result__content.ui-search-link").first().attr("href");
-        String imageUrl = src.select("div.slick-slide.slick-active")
-                .select("img.ui-search-result-image__element.shops__image-element").first().attr("src");
+        String imageUrl = getImageUrl(url);
         String price = src.select("span.price-tag-symbol").first().text()
                 + src.select("span.price-tag-fraction").first().text();
         String title = src.select("h2.ui-search-item__title.ui-search-item__group__element.shops__items-group-details.shops__item-title").text().replace(",", " ");
@@ -55,5 +54,19 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         } catch (IOException e) { e.printStackTrace(); }
         return seller;
     }
+
+    static String getImageUrl(String url) {
+
+        String imageUrl = "";
+        try {
+            Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
+            imageUrl = src.select("img.ui-pdp-image.ui-pdp-gallery__figure__image").attr("src");
+        } catch (IOException e) { e.printStackTrace(); }
+        return imageUrl;
+    }
+
+
+
+
 
 }
