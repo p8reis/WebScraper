@@ -9,6 +9,6 @@ public interface MarketplaceDetection {
     String getUrl();
     String getImageUrl();
     String getPrice();
-    Boolean getPaidSearch();
+    String getPaidSearch();
     String getSeller();
 }

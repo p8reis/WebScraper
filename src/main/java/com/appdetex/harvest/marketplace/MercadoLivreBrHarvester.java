@@ -29,7 +29,7 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         String title = src.select("h2.ui-search-item__title.ui-search-item__group__element.shops__items-group-details.shops__item-title").text().replace(",", " ");
         String description = getDescription(url);
         String seller = getSeller(url);
-        Boolean paidSearch = url.contains("is_advertising=true");
+        String paidSearch = String.valueOf(url.contains("is_advertising=true"));
 
         return new MarketplaceDetectionItem(captureDate, idx, title, description, url, imageUrl, price, paidSearch, seller);
     }

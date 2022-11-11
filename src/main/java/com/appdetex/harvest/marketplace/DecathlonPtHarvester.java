@@ -28,7 +28,7 @@ public class DecathlonPtHarvester extends AbstractHarvester {
         String description = getProductDescription(url);
         String seller = src.getElementsByClass("svelte-ht6pwr").text().replace("Vendido e expedido por ","");
 
-        return new MarketplaceDetectionItem(captureDate, idx, title, description, url, imageUrl, price, Boolean.FALSE, seller);
+        return new MarketplaceDetectionItem(captureDate, idx, title, description, url, imageUrl, price, String.valueOf(Boolean.FALSE), seller);
     }
 
     public static String getProductDescription(String url) {

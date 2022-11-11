@@ -28,7 +28,7 @@ public abstract class AbstractAmazonHarvester extends AbstractHarvester {
                 src.select("span.a-price-whole").text().replace(",", ".");
         String title = src.select("span.a-size-base-plus").text();
         String description = getDescription(url);
-        Boolean paidSearch = !("".equals(src.select("a.s-sponsored-label-text").text()));
+        String paidSearch = String.valueOf(!("".equals(src.select("a.s-sponsored-label-text").text())));
         String seller = getSeller(url);
 
         return new MarketplaceDetectionItem(captureDate, idx, title, description, url, imageUrl, price, paidSearch, seller);
