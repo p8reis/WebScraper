@@ -38,7 +38,8 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         String description = "";
         try {
             Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
-            description = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text().replace(",", " ");
+            description = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
+                    .replace(",", " ").replace("\"", " ");
         } catch (IOException e) { e.printStackTrace(); }
         return description;
     }
@@ -64,9 +65,5 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         } catch (IOException e) { e.printStackTrace(); }
         return imageUrl;
     }
-
-
-
-
 
 }
