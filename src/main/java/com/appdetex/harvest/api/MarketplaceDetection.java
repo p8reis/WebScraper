@@ -3,6 +3,7 @@ package com.appdetex.harvest.api;
 public interface MarketplaceDetection {
 
     String getCaptureDate();
+    String getMarketplace();
     Integer getOrder();
     String getTitle();
     String getDescription();

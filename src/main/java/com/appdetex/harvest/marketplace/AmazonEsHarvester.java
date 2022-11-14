@@ -18,9 +18,10 @@ public class AmazonEsHarvester extends AbstractHarvester {
     }
 
     @Override
-    protected MarketplaceDetection createDetection(Element src, int idx) {
+    protected MarketplaceDetection createDetection(Element src, int idx) throws IOException {
 
         String captureDate = getCaptureDate();
+        String marketplace = "AmazonES";
         String url = "https://www.amazon.es" + src.select("a").attr("href");
         String imageUrl = src.select("img.s-image").attr("src");
         String price = src.select("span.a-price-symbol").text() +
@@ -30,7 +31,9 @@ public class AmazonEsHarvester extends AbstractHarvester {
         String paidSearch = String.valueOf(!("".equals(src.select("a.s-sponsored-label-text").text())));
         String seller = getSeller(url);
 
-        return new MarketplaceDetectionItem(captureDate, idx, title, description, url, imageUrl, price, paidSearch, seller);
+        exportToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
+
+        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
     }
 
     static String getDescription(String url) {

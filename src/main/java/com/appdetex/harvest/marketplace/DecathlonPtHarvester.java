@@ -18,9 +18,10 @@ public class DecathlonPtHarvester extends AbstractHarvester {
     }
 
     @Override
-    protected MarketplaceDetection createDetection(Element src, int idx) {
+    protected MarketplaceDetection createDetection(Element src, int idx) throws IOException {
 
         String captureDate = getCaptureDate();
+        String marketplace = "DecathlonPT";
         String url = "https://www.decathlon.pt" + src.select("a").attr("href");
         String imageUrl = getProductImageUrl(url);
         String price = getPrice(url);
@@ -28,7 +29,9 @@ public class DecathlonPtHarvester extends AbstractHarvester {
         String description = getProductDescription(url);
         String seller = src.getElementsByClass("svelte-ht6pwr").text().replace("Vendido e expedido por ","");
 
-        return new MarketplaceDetectionItem(captureDate, idx, title, description, url, imageUrl, price, String.valueOf(Boolean.FALSE), seller);
+        exportToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, String.valueOf(Boolean.FALSE));
+
+        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, String.valueOf(Boolean.FALSE), seller);
     }
 
     public static String getProductDescription(String url) {

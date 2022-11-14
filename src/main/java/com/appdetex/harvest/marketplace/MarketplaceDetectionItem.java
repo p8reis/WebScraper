@@ -5,6 +5,7 @@ import com.appdetex.harvest.api.MarketplaceDetection;
 public class MarketplaceDetectionItem implements MarketplaceDetection {
 
     private String captureDate;
+    private String marketplace;
     private Integer order;
     private String title;
     private String description;
@@ -14,8 +15,10 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
     private String paidSearch;
     private String seller;
 
-    public MarketplaceDetectionItem(String captureDate, Integer order, String title, String description, String url, String imageUrl, String price, String paidSearch, String seller) {
+    public MarketplaceDetectionItem(String captureDate, String marketplace, Integer order, String title
+            , String description, String url, String imageUrl, String price, String paidSearch, String seller) {
         this.captureDate = captureDate;
+        this.marketplace = marketplace;
         this.order = order;
         this.title = title;
         this.description = description;
@@ -28,6 +31,9 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
 
     @Override
     public String getCaptureDate() { return captureDate; }
+
+    @Override
+    public String getMarketplace() { return marketplace; }
 
     @Override
     public Integer getOrder() {

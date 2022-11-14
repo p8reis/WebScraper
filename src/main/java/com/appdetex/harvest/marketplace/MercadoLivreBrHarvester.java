@@ -18,19 +18,24 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
     }
 
     @Override
-    protected MarketplaceDetection createDetection(Element src, int idx) {
+    protected MarketplaceDetection createDetection(Element src, int idx) throws IOException {
 
         String captureDate = getCaptureDate();
+        String marketplace = "MercadoLivreBR";
         String url = src.select(".ui-search-result__content.ui-search-link").first().attr("href");
         String imageUrl = getImageUrl(url);
         String price = src.select("span.price-tag-symbol").first().text()
                 + src.select("span.price-tag-fraction").first().text();
         String title = src.select("h2.ui-search-item__title.ui-search-item__group__element.shops__items-group-details.shops__item-title").text().replace(",", " ");
-        String description = getDescription(url);
-        String seller = getSeller(url);
         String paidSearch = String.valueOf(url.contains("is_advertising=true"));
 
-        return new MarketplaceDetectionItem(captureDate, idx, title, description, url, imageUrl, price, paidSearch, seller);
+
+        String description = getDescription(url);
+        String seller = getSeller(url);
+
+        exportToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
+
+        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
     }
 
     static String getDescription(String url) {
@@ -65,5 +70,16 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         } catch (IOException e) { e.printStackTrace(); }
         return imageUrl;
     }
+
+    static String getFromListing(String url, String field, String query) {
+
+        try {
+            Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
+            field = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
+                    .replace(",", " ").replace("\"", " ");
+        } catch (IOException e) { e.printStackTrace(); }
+        return field;
+    }
+
 
 }
