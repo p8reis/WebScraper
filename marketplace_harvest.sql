@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `marketplace_harvest`.`marketplace_detections` (
   `order_on_page` INT NULL DEFAULT NULL,
   `title` VARCHAR(500) NULL DEFAULT NULL,
   `description` VARCHAR(5000) NULL DEFAULT NULL,
-  `url` VARCHAR(1500) NULL DEFAULT NULL,
+  `url` VARCHAR(1000) NULL DEFAULT NULL,
   `image_url` VARCHAR(1500) NULL DEFAULT NULL,
   `price` VARCHAR(500) NULL DEFAULT NULL,
   `seller` VARCHAR(100) NULL DEFAULT NULL,
@@ -50,11 +50,11 @@ CREATE TABLE IF NOT EXISTS `marketplace_harvest`.`marketplace_detections` (
   `state` VARCHAR(500) NULL DEFAULT 'new',
   `reason_code` VARCHAR(500) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `title_UNIQUE` (`title` ASC) VISIBLE,
+  UNIQUE INDEX `url_UNIQUE` (`url` ASC) VISIBLE,
   INDEX `fk_marketplace_detections_status1_idx` (`status` ASC) VISIBLE,
   INDEX `fk_marketplace_detections_state1_idx` (`state` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 23
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb3;
 
 

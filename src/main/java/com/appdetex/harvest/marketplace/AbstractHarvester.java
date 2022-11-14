@@ -82,7 +82,6 @@ public abstract class AbstractHarvester implements MarketplaceHarvester {
             httpPost.setHeader("Content-type", "application/json; charset=UTF-8");
             CloseableHttpResponse response = client.execute(httpPost);
         }
-
     }
 
 }
