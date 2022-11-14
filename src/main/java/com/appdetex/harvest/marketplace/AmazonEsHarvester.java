@@ -43,7 +43,6 @@ public class AmazonEsHarvester extends AbstractHarvester {
             Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
             description = src.select("ul.a-unordered-list.a-vertical.a-spacing-mini").text().replace(",", " ");
         } catch (IOException e) { e.printStackTrace(); }
-        if (description.isEmpty()) { return null; }
         return description;
     }
 
@@ -57,7 +56,6 @@ public class AmazonEsHarvester extends AbstractHarvester {
                 seller = src.select("div#bylineInfo_feature_div.celwidget").text().replace("Visita la Store de ", "");
             }
         } catch (IOException e) { e.printStackTrace(); }
-        if (seller.isEmpty()) { return null; }
         return seller;
     }
 
