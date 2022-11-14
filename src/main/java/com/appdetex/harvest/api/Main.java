@@ -1,36 +1,44 @@
 package com.appdetex.harvest.api;
 
 import com.appdetex.harvest.marketplace.*;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static Integer numItems = 5;
+    public static Integer numItems = 10;
     public static String term = "jacuzzi";
-    public static void main(String[] args) throws HarvestException, SQLException, ClassNotFoundException {
-
-        //new AmazonEsHarvester().parseTarget(term,numItems);
-        //new DecathlonPtHarvester().parseTarget(term, numItems);
-        //new MercadoLivreBrHarvester().parseTarget(term, numItems);
+    public static void main(String[] args) throws HarvestException, SQLException, ClassNotFoundException, IOException, URISyntaxException, InterruptedException {
 
         Menu();
     }
 
     public static void Harvester(int numItems,String term) throws HarvestException {
         new AmazonEsHarvester().parseTarget(term,numItems);
+        System.out.println("Amazon ES harvest is completed");
         new DecathlonPtHarvester().parseTarget(term, numItems);
+        System.out.println("Decathlon PT harvest is completed");
         new MercadoLivreBrHarvester().parseTarget(term, numItems);
+        System.out.println("Mercado Livre BR harvest is completed");
     }
 
-    public static void Menu() throws HarvestException {
+    public static void Menu() throws HarvestException, IOException, URISyntaxException, InterruptedException {
 
+        Scanner scanner = new Scanner(System.in);
+        DatabaseUpdater performOperation = new DatabaseUpdater();
+
+        System.out.println("Hi! Please give me your analyst ID.");
+        int analystID = scanner.nextInt();
+
+        System.out.println("Now, please choose one option from the menu:\n");
         System.out.println("1. Detections options");
         System.out.println("2. Analysts options");
         System.out.println("3. Audit options");
         System.out.println("4. Other options");
 
-        Scanner scanner = new Scanner(System.in);
         int option = scanner.nextInt();
 
         switch (option){
@@ -62,25 +70,28 @@ public class Main {
                                 System.out.println("3. Enforce");
 
                                 int stateOption = scanner.nextInt();
-                                if (stateOption == 1){
-                                    //new state
-                                    //...
-                                    System.out.println("State is new");
-                                }
-                                else if (stateOption == 2){
-                                    //benign state
-                                    //...
-                                    System.out.println("State is benign");
-                                }
-                                else if (stateOption == 3){
-                                    //enforce state
-                                    //...
-                                    System.out.println("State is enforce");
-                                }
-                                else{
-                                    System.out.println("Wrong input");
+
+                                switch (stateOption){
+                                    case 1:
+                                        performOperation.updateMarketplaceDetection(analystID, idDetection, "state", "new");
+                                        System.out.println("State is new");
+                                        break;
+
+                                    case 2:
+                                        performOperation.updateMarketplaceDetection(analystID, idDetection, "state", "benign");
+                                        System.out.println("State is benign");
+                                        break;
+
+                                    case 3:
+                                        performOperation.updateMarketplaceDetection(analystID, idDetection, "state", "enforce");
+                                        System.out.println("State is enforce");
+                                        break;
+
+                                    default:
+                                        System.out.println("Wrong input");
                                 }
                                 break;
+
                             case 2:
                                 System.out.println("1. Open");
                                 System.out.println("2. Closed");
@@ -88,16 +99,16 @@ public class Main {
                                 int statusOption = scanner.nextInt();
                                 if (statusOption == 1){
                                     // change status to open
-                                    //...
+                                    performOperation.updateMarketplaceDetection(analystID, idDetection, "status", "open");
                                     System.out.println("Status is now open");
                                 }
                                 else if (statusOption == 2) {
-                                    //change status to closed
-                                    //...
+                                    performOperation.updateMarketplaceDetection(analystID, idDetection, "status", "close");
                                     System.out.println("Status is now closed");
                                 }
                                 else{
                                     System.out.println("Wrong input");
+                                    return;
                                 }
 
                                 break;
@@ -111,23 +122,21 @@ public class Main {
                                 int reasonCodeOption = scanner.nextInt();
 
                                 if (reasonCodeOption == 1){
-                                    //change reason code to brand misuse
-                                    //...
+                                    performOperation.updateMarketplaceDetection(analystID, idDetection, "reason code", "brand misuse");
                                     System.out.println("Reason code is now brand misuse");
                                 }
                                 else if (reasonCodeOption ==2){
-                                    //change reason code to trademark infringement
-                                    //...
+                                    performOperation.updateMarketplaceDetection(analystID, idDetection, "reason code", "trademark infringement");
                                     System.out.println("Reason code is now trademark infringement");
                                 }
                                 else if (reasonCodeOption ==3){
                                     //change reason code to phishing
-                                    //...
+                                    performOperation.updateMarketplaceDetection(analystID, idDetection, "reason code", "phishing");
                                     System.out.println("Reason code is now phishing");
                                 }
                                 else if (reasonCodeOption ==4){
                                     //change reason code to fair use
-                                    //...
+                                    performOperation.updateMarketplaceDetection(analystID, idDetection, "reason code", "fair-use");
                                     System.out.println("Reason code is now fair use");
                                 }
                                 else{
