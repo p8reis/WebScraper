@@ -26,7 +26,7 @@ abstract class AbstractHarvesterTest {
 
     @ParameterizedTest
     @ValueSource (ints = {0, 5, 10, 20})
-    void testWithExpectedResults(int numResults) {
+    void testWithExpectedResults(int numResults) throws Exception {
         List<MarketplaceDetection> detections = null;
         try {
             Document doc = getHtml(expectedHtml);

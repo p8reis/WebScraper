@@ -4,15 +4,11 @@ import com.appdetex.harvest.api.HarvestException;
 import com.appdetex.harvest.api.MarketplaceDetection;
 import com.appdetex.harvest.api.MarketplaceHarvester;
 
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,7 +24,7 @@ public abstract class AbstractHarvester implements MarketplaceHarvester {
     }
 
     @Override
-    public List<MarketplaceDetection> parseTarget(String term, int numItems) throws HarvestException {
+    public List<MarketplaceDetection> parseTarget(String term, int numItems) throws Exception {
 
         Document doc = null;
         try {
@@ -41,7 +37,7 @@ public abstract class AbstractHarvester implements MarketplaceHarvester {
         }
     }
 
-    protected final List<MarketplaceDetection> parseTargetInternal(Document doc, int numItems) throws HarvestException, IOException {
+    protected final List<MarketplaceDetection> parseTargetInternal(Document doc, int numItems) throws Exception {
 
         ArrayList<MarketplaceDetection> detections = new ArrayList<>();
 
@@ -56,7 +52,7 @@ public abstract class AbstractHarvester implements MarketplaceHarvester {
 
     protected abstract Elements getListingElements(Document doc);
 
-    protected abstract MarketplaceDetection createDetection(Element src, int idx) throws IOException;
+    protected abstract MarketplaceDetection createDetection(Element src, int idx) throws Exception;
 
     public String getCaptureDate() {
 
@@ -64,24 +60,4 @@ public abstract class AbstractHarvester implements MarketplaceHarvester {
         String captureDate = dtf.format(LocalDateTime.now());
         return captureDate;
     }
-
-    public void exportToDatabase(String captureDate, String marketplace, Integer idx, String title, String description
-            , String url, String imageUrl, String price, String seller, String paidSearch) throws IOException {
-
-        try (CloseableHttpClient client = HttpClients.createDefault()) {
-
-            HttpPost httpPost = new HttpPost("http://localhost:8081/api/marketplacedetections/create");
-            String json = "{\n\"capture_date\" : \"" + captureDate + "\",\n\"marketplace\" : \"" + marketplace
-                    + "\",\n\"order_on_page\" : \"" + idx + "\",\n\"title\" : \"" + title + "\",\n\"description\" : \""
-                    + description + "\",\n\"url\" : \"" + url + "\",\n\"image_url\" : \"" + imageUrl
-                    + "\",\n\"price\" : \"" + price + "\",\n\"seller\" : \"" + seller + "\",\n\"paid_search\" : \""
-                    + paidSearch + "\",\n\"status\" : \"open\",\n\"state\" : \"new\"\n}";
-            StringEntity entity = new StringEntity(json, "UTF-8");
-            httpPost.setEntity(entity);
-            httpPost.setHeader("Accept", "application/json");
-            httpPost.setHeader("Content-type", "application/json; charset=UTF-8");
-            CloseableHttpResponse response = client.execute(httpPost);
-        }
-    }
-
 }

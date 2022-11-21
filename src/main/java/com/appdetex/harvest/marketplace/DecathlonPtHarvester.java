@@ -6,7 +6,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import java.io.IOException;
+
+import static com.appdetex.harvest.database.DatabaseExporter.postToDatabase;
 
 public class DecathlonPtHarvester extends AbstractHarvester {
 
@@ -18,54 +19,23 @@ public class DecathlonPtHarvester extends AbstractHarvester {
     }
 
     @Override
-    protected MarketplaceDetection createDetection(Element src, int idx) throws IOException {
+    protected MarketplaceDetection createDetection(Element src, int idx) throws Exception {
 
         String captureDate = getCaptureDate();
         String marketplace = "DecathlonPT";
         String url = "https://www.decathlon.pt" + src.select("a").attr("href");
-        String imageUrl = getProductImageUrl(url);
-        String price = getPrice(url);
         String title = src.select(".vtmn-p-0.vtmn-m-0.vtmn-text-sm.vtmn-font-normal.vtmn-overflow-hidden.vtmn-text-ellipsis.svelte-1l3biyf").text().replace(",", " ");
-        String description = getProductDescription(url);
         String seller = src.getElementsByClass("svelte-ht6pwr").text().replace("Vendido e expedido por ","");
 
-        exportToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, String.valueOf(Boolean.FALSE));
+        src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
+        String imageUrl = src.select(".svelte-w1lrdd").attr("abs:src");
+        String description = src.select(".svelte-1uw9j0x").text().replace(",", " ").replace("\"", "");;
+        String price = src.select("div.prc__active-price.svelte-t8m03u").text().replace(",", ".");
+        Character currency = price.charAt(price.length() - 1);
+        price = (currency + price).substring(0, price.length());
+
+        postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, String.valueOf(Boolean.FALSE));
 
         return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, String.valueOf(Boolean.FALSE), seller);
     }
-
-    public static String getProductDescription(String url) {
-
-        String description = "";
-        try {
-            Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
-            description = src.select(".svelte-1uw9j0x").text().replace(",", " ");
-        } catch (IOException e) { e.printStackTrace(); }
-        if (description.length() == 0) { description = null; }
-        return description;
-    }
-
-    public static String getProductImageUrl(String url) {
-
-        String imageUrl = "";
-        try {
-            Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
-            imageUrl = src.select(".svelte-w1lrdd").attr("abs:src");
-        } catch (IOException e) { e.printStackTrace(); }
-        return imageUrl;
-    }
-
-    public static String getPrice(String url) {
-
-        String price = "";
-        Character currency;
-        try {
-            Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
-            price = src.select("div.prc__active-price.svelte-t8m03u").text().replace(",", ".");
-            currency = price.charAt(price.length() - 1);
-            price = (currency + price).substring(0, price.length());
-        } catch (IOException e) { e.printStackTrace(); }
-        return price;
-    }
-
 }

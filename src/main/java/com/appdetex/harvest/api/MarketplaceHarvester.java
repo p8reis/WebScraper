@@ -11,5 +11,5 @@ public interface MarketplaceHarvester {
      * @return returns detections found for the search term
      * @throws HarvestException
      */
-    List<MarketplaceDetection> parseTarget(String term, int numItems) throws HarvestException;
+    List<MarketplaceDetection> parseTarget(String term, int numItems) throws HarvestException, Exception;
 }

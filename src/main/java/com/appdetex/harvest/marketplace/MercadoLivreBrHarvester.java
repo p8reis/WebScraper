@@ -2,11 +2,12 @@ package com.appdetex.harvest.marketplace;
 
 import com.appdetex.harvest.api.MarketplaceDetection;
 
-import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import static com.appdetex.harvest.database.DatabaseExporter.postToDatabase;
 
 public class MercadoLivreBrHarvester extends AbstractHarvester {
 
@@ -18,68 +19,26 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
     }
 
     @Override
-    protected MarketplaceDetection createDetection(Element src, int idx) throws IOException {
+    protected MarketplaceDetection createDetection(Element src, int idx) throws Exception {
 
         String captureDate = getCaptureDate();
         String marketplace = "MercadoLivreBR";
         String url = src.select(".ui-search-result__content.ui-search-link").first().attr("href");
-        String imageUrl = getImageUrl(url);
         String price = src.select("span.price-tag-symbol").first().text()
                 + src.select("span.price-tag-fraction").first().text();
         String title = src.select("h2.ui-search-item__title.ui-search-item__group__element.shops__items-group-details.shops__item-title").text().replace(",", " ");
         String paidSearch = String.valueOf(url.contains("is_advertising=true"));
 
+        src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
+        String description = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
+                .replace(",", " ").replace("\"", "");
+        String imageUrl = src.select("img.ui-pdp-image.ui-pdp-gallery__figure__image").attr("src");
+        String sellerUrl = src.select("a.ui-pdp-media__action.ui-box-component__action").first().attr("href");
+        src = Jsoup.connect(sellerUrl).get();
+        String seller = src.select("div.store-info-title > h3.store-info__name").text();
 
-        String description = getDescription(url);
-        String seller = getSeller(url);
-
-        exportToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
+        postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
 
         return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
     }
-
-    static String getDescription(String url) {
-
-        String description = "";
-        try {
-            Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
-            description = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
-                    .replace(",", " ").replace("\"", " ");
-        } catch (IOException e) { e.printStackTrace(); }
-        return description;
-    }
-
-    static String getSeller(String url) {
-
-        String seller = "";
-        try {
-            Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
-            String sellerUrl = src.select("a.ui-pdp-media__action.ui-box-component__action").first().attr("href");
-            src = Jsoup.connect(sellerUrl).get();
-            seller = src.select("div.store-info-title > h3.store-info__name").text();
-        } catch (IOException e) { e.printStackTrace(); }
-        return seller;
-    }
-
-    static String getImageUrl(String url) {
-
-        String imageUrl = "";
-        try {
-            Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
-            imageUrl = src.select("img.ui-pdp-image.ui-pdp-gallery__figure__image").attr("src");
-        } catch (IOException e) { e.printStackTrace(); }
-        return imageUrl;
-    }
-
-    static String getFromListing(String url, String field, String query) {
-
-        try {
-            Document src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
-            field = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
-                    .replace(",", " ").replace("\"", " ");
-        } catch (IOException e) { e.printStackTrace(); }
-        return field;
-    }
-
-
 }
