@@ -1,6 +1,5 @@
 package com.appdetex.harvest.marketplace;
 
-import com.appdetex.harvest.api.HarvestException;
 import com.appdetex.harvest.api.MarketplaceDetection;
 import com.appdetex.harvest.api.MarketplaceHarvester;
 
@@ -33,7 +32,7 @@ public abstract class AbstractHarvester implements MarketplaceHarvester {
             return parseTargetInternal(doc, numItems);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new HarvestException();
+            throw new Exception();
         }
     }
 

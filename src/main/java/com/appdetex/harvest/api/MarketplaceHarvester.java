@@ -9,7 +9,7 @@ public interface MarketplaceHarvester {
      * @param term the search term
      * @param numItems the number of items to return
      * @return returns detections found for the search term
-     * @throws HarvestException
+     * @throws Exception
      */
-    List<MarketplaceDetection> parseTarget(String term, int numItems) throws HarvestException, Exception;
+    List<MarketplaceDetection> parseTarget(String term, int numItems) throws Exception;
 }

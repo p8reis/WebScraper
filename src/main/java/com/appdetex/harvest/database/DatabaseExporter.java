@@ -12,17 +12,13 @@ import java.util.Scanner;
 
 public class DatabaseExporter {
 
-    public static String[] getAll() throws Exception {
+    public static String getAll() throws Exception {
+
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet("http://localhost:8081/api/marketplacedetections/getAll");
         HttpResponse httpresponse = httpclient.execute(httpGet);
         Scanner sc = new Scanner(httpresponse.getEntity().getContent());
-        String entireDatabase = sc.nextLine();
-        entireDatabase = entireDatabase
-                .replace("[", "")
-                .replace("]","")
-                .replace("{", "");
-        String databaseDetections[] = entireDatabase.split("},");
+        String databaseDetections = sc.nextLine();
 
         return databaseDetections;
     }
@@ -33,18 +29,22 @@ public class DatabaseExporter {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
             HttpPost httpPost = new HttpPost("http://localhost:8081/api/marketplacedetections/create");
-            String json = "{\"capture_date\":\"" + captureDate + "\",\"marketplace\":\"" + marketplace
-                    + "\",\"order_on_page\":\"" + idx + "\",\"title\":\"" + title + "\",\"description\":\""
-                    + description + "\",\"url\":\"" + url + "\",\"image_url\":\"" + imageUrl
-                    + "\",\"price\":\"" + price + "\",\"seller\":\"" + seller + "\",\"paid_search\":\""
-                    + paidSearch + "\",\"status\":\"open\",\"state\":\"new\"}";
-            String jsonCompare = json.replace("{", "").replace("}", "");
+            String json = "{\"capture_date\":\"" + captureDate
+                    + "\",\"marketplace\":\"" + marketplace
+                    + "\",\"order_on_page\":\"" + idx
+                    + "\",\"title\":\"" + title
+                    + "\",\"description\":\"" + description
+                    + "\",\"url\":\"" + url
+                    + "\",\"image_url\":\"" + imageUrl
+                    + "\",\"price\":\"" + price
+                    + "\",\"seller\":\"" + seller
+                    + "\",\"paid_search\":\"" + paidSearch
+                    + "\",\"status\":\"open\",\"state\":\"new\"}";
             StringEntity entity = new StringEntity(json, "UTF-8");
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json; charset=UTF-8");
             CloseableHttpResponse response = client.execute(httpPost);
-
         }
     }
 
