@@ -4,7 +4,7 @@ import com.appdetex.harvest.marketplace.*;
 
 public class Main {
 
-    public static Integer numItems = 10;
+    public static Integer numItems = 5;
     public static String term = "jacuzzi";
     public static void main(String[] args) throws Exception {
 

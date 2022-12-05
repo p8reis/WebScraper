@@ -18,6 +18,17 @@ CREATE SCHEMA IF NOT EXISTS `marketplace_harvest` DEFAULT CHARACTER SET utf8mb3 
 USE `marketplace_harvest` ;
 
 -- -----------------------------------------------------
+-- Table `marketplace_harvest`.`accounts`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `marketplace_harvest`.`accounts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
 -- Table `marketplace_harvest`.`analysts`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `marketplace_harvest`.`analysts` (
@@ -39,9 +50,9 @@ CREATE TABLE IF NOT EXISTS `marketplace_harvest`.`marketplace_detections` (
   `capture_date` VARCHAR(100) NULL DEFAULT NULL,
   `marketplace` VARCHAR(500) NULL DEFAULT NULL,
   `order_on_page` INT NULL DEFAULT NULL,
-  `title` VARCHAR(500) NULL DEFAULT NULL,
+  `title` VARCHAR(1000) NULL DEFAULT NULL,
   `description` VARCHAR(10000) NULL DEFAULT NULL,
-  `url` VARCHAR(1000) NULL DEFAULT NULL,
+  `url` VARCHAR(1000) NOT NULL DEFAULT '',
   `image_url` VARCHAR(1500) NULL DEFAULT NULL,
   `price` VARCHAR(500) NULL DEFAULT NULL,
   `seller` VARCHAR(100) NULL DEFAULT NULL,
@@ -50,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `marketplace_harvest`.`marketplace_detections` (
   `state` VARCHAR(500) NULL DEFAULT 'new',
   `reason_code` VARCHAR(500) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `url_UNIQUE` (`url` ASC) VISIBLE,
   INDEX `fk_marketplace_detections_status1_idx` (`status` ASC) VISIBLE,
   INDEX `fk_marketplace_detections_state1_idx` (`state` ASC) VISIBLE)
@@ -77,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `marketplace_harvest`.`audit` (
     FOREIGN KEY (`marketplace_detections_id`)
     REFERENCES `marketplace_harvest`.`marketplace_detections` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb3;
 
 
