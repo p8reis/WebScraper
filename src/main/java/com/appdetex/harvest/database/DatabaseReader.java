@@ -24,43 +24,15 @@ public class DatabaseReader {
         return databaseDetections;
     }
 
-    public static class Account {
-        private Integer id;
-        private String name;
-
-        public String getName() { return name; }
-
-        public Integer getId() { return id; }
-    }
-
-    public static List<Account> getAllAccounts() throws Exception {
-
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://localhost:8008/api/account/getAll");
-        HttpResponse httpresponse = httpclient.execute(httpGet);
-        Scanner sc = new Scanner(httpresponse.getEntity().getContent());
-        String allAccounts = sc.nextLine();
-
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        List<Account> accountList = mapper.readValue(allAccounts, new TypeReference<List<Account>>(){});
-
-        for (int i = 0; i < accountList.size(); i++) {
-            System.out.println(accountList.get(i).getId());
-            System.out.println(accountList.get(i).getName());
-        }
-
-        return accountList;
-    }
-
     public static class BrandTrack {
-        private Integer id;
-        private String searchTerm;
-        private Integer accountId;
 
-        public String getSearchTerm() { return searchTerm; }
+        private Integer id;
+        private String search_term;
+        private Integer accountId;
         public Integer getId() { return id; }
+        public String getSearch_term() { return search_term; }
         public Integer getAccountId() { return accountId; }
+
     }
 
     public static List<BrandTrack> getAllBrandTracks() throws Exception {
@@ -70,6 +42,7 @@ public class DatabaseReader {
         HttpResponse httpresponse = httpclient.execute(httpGet);
         Scanner sc = new Scanner(httpresponse.getEntity().getContent());
         String allBrandTracks = sc.nextLine();
+        System.out.println(allBrandTracks);
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -77,7 +50,7 @@ public class DatabaseReader {
 
         for (int i = 0; i < brandTracksList.size(); i++) {
             System.out.println(brandTracksList.get(i).getId());
-            System.out.println(brandTracksList.get(i).getSearchTerm());
+            System.out.println(brandTracksList.get(i).getSearch_term());
             System.out.println(brandTracksList.get(i).getAccountId());
         }
 
