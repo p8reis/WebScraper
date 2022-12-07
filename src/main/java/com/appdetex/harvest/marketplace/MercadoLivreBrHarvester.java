@@ -7,7 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import static com.appdetex.harvest.database.DatabaseExporter.postToDatabase;
+import static com.appdetex.harvest.database.DatabaseWriter.postToDatabase;
 
 public class MercadoLivreBrHarvester extends AbstractHarvester {
 
