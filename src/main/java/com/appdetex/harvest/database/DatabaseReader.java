@@ -42,17 +42,10 @@ public class DatabaseReader {
         HttpResponse httpresponse = httpclient.execute(httpGet);
         Scanner sc = new Scanner(httpresponse.getEntity().getContent());
         String allBrandTracks = sc.nextLine();
-        System.out.println(allBrandTracks);
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         List<BrandTrack> brandTracksList = mapper.readValue(allBrandTracks, new TypeReference<List<BrandTrack>>(){});
-
-        for (int i = 0; i < brandTracksList.size(); i++) {
-            System.out.println(brandTracksList.get(i).getId());
-            System.out.println(brandTracksList.get(i).getSearch_term());
-            System.out.println(brandTracksList.get(i).getAccountId());
-        }
 
         return brandTracksList;
     }
