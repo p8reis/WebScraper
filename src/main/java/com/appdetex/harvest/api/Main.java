@@ -15,17 +15,17 @@ public class Main {
     public static String term = "jacuzzi";
     public static void main(String[] args) throws Exception {
 
-        /*new AmazonEsHarvester().parseTarget(term,numItems);
+        new AmazonEsHarvester().parseTarget(term,numItems);
         System.out.println("Amazon ES harvest is completed");
         new DecathlonPtHarvester().parseTarget(term, numItems);
         System.out.println("Decathlon PT harvest is completed");
         new MercadoLivreBrHarvester().parseTarget(term, numItems);
-        System.out.println("Mercado Livre BR harvest is completed");*/
+        System.out.println("Mercado Livre BR harvest is completed");
 
-        for (int i = 0; i < getAllAccounts().size(); i++) {
+        /*for (int i = 0; i < getAllAccounts().size(); i++) {
             System.out.println(getAllAccounts().get(i).getName()); }
 
-        getAllBrandTracks();
+        getAllBrandTracks();*/
 
     }
 }

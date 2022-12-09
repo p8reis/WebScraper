@@ -16,7 +16,7 @@ public class DatabaseReader {
     public static String getAll() throws Exception {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://localhost:8008/api/marketplacedetections/getAll");
+        HttpGet httpGet = new HttpGet("http://localhost:8081/api/marketplacedetections/getAll");
         HttpResponse httpresponse = httpclient.execute(httpGet);
         Scanner sc = new Scanner(httpresponse.getEntity().getContent());
         String databaseDetections = sc.nextLine();
@@ -36,7 +36,7 @@ public class DatabaseReader {
     public static List<Account> getAllAccounts() throws Exception {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://localhost:8008/api/account/getAll");
+        HttpGet httpGet = new HttpGet("http://localhost:8081/api/account/getAll");
         HttpResponse httpresponse = httpclient.execute(httpGet);
         Scanner sc = new Scanner(httpresponse.getEntity().getContent());
         String allAccounts = sc.nextLine();
@@ -66,7 +66,7 @@ public class DatabaseReader {
     public static List<BrandTrack> getAllBrandTracks() throws Exception {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://localhost:8008/api/brandtracks/getAll");
+        HttpGet httpGet = new HttpGet("http://localhost:8081/api/brandtracks/getAll");
         HttpResponse httpresponse = httpclient.execute(httpGet);
         Scanner sc = new Scanner(httpresponse.getEntity().getContent());
         String allBrandTracks = sc.nextLine();
