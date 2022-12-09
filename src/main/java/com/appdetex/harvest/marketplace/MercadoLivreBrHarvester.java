@@ -23,10 +23,16 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
 
         String captureDate = getCaptureDate();
         String marketplace = "MercadoLivreBR";
-        String url = src.select(".ui-search-result__content.ui-search-link").first().attr("href");
+        String url = src.select("a").first().attr("href");
+
         String price = src.select("span.price-tag-symbol").first().text()
                 + src.select("span.price-tag-fraction").first().text();
-        String title = src.select("h2.ui-search-item__title.ui-search-item__group__element.shops__items-group-details.shops__item-title").text().replace(",", " ");
+
+        String title = src.select("h2.ui-search-item__title.ui-search-item__group__element.shops__items-group-details.shops__item-title").text().replace(",", "");
+        if (title.isEmpty()) {
+            title = src.select(".ui-search-item__title.shops__item-title").text().replace(",", "");
+        }
+
         String paidSearch = String.valueOf(url.contains("is_advertising=true"));
 
         src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();

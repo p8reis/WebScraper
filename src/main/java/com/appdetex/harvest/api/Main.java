@@ -7,7 +7,7 @@ import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
 
 public class Main {
 
-    public static Integer numItems = 5;
+    public static Integer numItems = 1;
 
     public static void main(String[] args) throws Exception {
 
