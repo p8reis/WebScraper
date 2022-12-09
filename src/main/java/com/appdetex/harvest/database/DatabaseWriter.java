@@ -6,6 +6,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
+import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
+
 public class DatabaseWriter {
 
     public static void postToDatabase(String captureDate, String marketplace, Integer idx, String title, String description
@@ -13,7 +15,7 @@ public class DatabaseWriter {
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            HttpPost httpPost = new HttpPost("http://localhost:8081/api/marketplacedetections/create");
+            HttpPost httpPost = new HttpPost("http://localhost:8008/api/marketplacedetections/create");
             String json = "{\"capture_date\":\"" + captureDate
                     + "\",\"marketplace\":\"" + marketplace
                     + "\",\"order_on_page\":\"" + idx
@@ -24,7 +26,8 @@ public class DatabaseWriter {
                     + "\",\"price\":\"" + price
                     + "\",\"seller\":\"" + seller
                     + "\",\"paid_search\":\"" + paidSearch
-                    + "\",\"status\":\"open\",\"state\":\"new\",\"account_id\":1}";
+                    + "\",\"status\":\"open\",\"state\":\"new\",\"account_id\":\""
+                    + getAllBrandTracks().get().getAccountId() + "\"}";
             StringEntity entity = new StringEntity(json, "UTF-8");
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");
