@@ -2,6 +2,7 @@ package com.appdetex.harvest.marketplace;
 
 import com.appdetex.harvest.api.MarketplaceDetection;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -40,11 +41,13 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
                 .replace(",", " ").replace("\"", "");
         String imageUrl = src.select("img.ui-pdp-image.ui-pdp-gallery__figure__image").attr("src");
         String sellerUrl = src.select("a.ui-pdp-media__action.ui-box-component__action").first().attr("href");
+
+
         src = Jsoup.connect(sellerUrl).get();
         String seller = src.select("div.store-info-title > h3.store-info__name").text();
 
         postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
 
         return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
+        }
     }
-}
