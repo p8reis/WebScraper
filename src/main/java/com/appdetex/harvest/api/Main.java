@@ -5,9 +5,12 @@ import org.quartz.*;
 import org.quartz.impl.StdScheduler;
 import org.quartz.impl.StdSchedulerFactory;
 
+import java.util.Date;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        /*
         try {
             JobDetail jobEveryDay = JobBuilder.newJob(CronJob.class).withIdentity("jobEveryDay", "group1").build();
             Trigger triggerEveryDay = TriggerBuilder.newTrigger().withIdentity("triggerEveryDay", "group1").
@@ -19,6 +22,14 @@ public class Main {
         catch (SchedulerException e) {
             throw new RuntimeException(e);
         }
-
+         */
+        try {
+            System.out.println("Time is "+ new Date());
+            DatabaseWriter databaseWriter = new DatabaseWriter();
+            databaseWriter.runHarvest();
+            System.out.println("Harvest done");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

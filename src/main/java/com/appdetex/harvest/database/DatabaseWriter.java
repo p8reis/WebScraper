@@ -14,17 +14,16 @@ import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
 public class DatabaseWriter {
 
     public static Integer numItems = 1;
-    public static Integer  i2= 0;
+    public static Integer  it;
     public void runHarvest() throws Exception {
-        for (int i = 0; i < getAllBrandTracks().size(); i++) {
-            String term = getAllBrandTracks().get(i).getSearch_term();
+        for (it = 0; it < getAllBrandTracks().size(); it++) {
+            String term = getAllBrandTracks().get(it).getSearch_term();
             new AmazonEsHarvester().parseTarget(term, numItems);
             System.out.println("Amazon ES harvest is completed");
             new DecathlonPtHarvester().parseTarget(term, numItems);
             System.out.println("Decathlon PT harvest is completed");
             new MercadoLivreBrHarvester().parseTarget(term, numItems);
             System.out.println("Mercado Livre BR harvest is completed");
-            i2=i;
         }
     }
 
@@ -46,7 +45,7 @@ public class DatabaseWriter {
                     + "\",\"seller\":\"" + seller
                     + "\",\"paid_search\":\"" + paidSearch
                     + "\",\"status\":\"open\",\"state\":\"new\",\"account_id\":\""
-                    + getAllBrandTracks().get(i2).getAccountId() + "\"}";
+                    + getAllBrandTracks().get(it).getAccountId() + "\"}";
             StringEntity entity = new StringEntity(json, "UTF-8");
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");
