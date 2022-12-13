@@ -24,7 +24,7 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
 
         String captureDate = getCaptureDate();
         String marketplace = "MercadoLivreBR";
-        String url = src.select("a").first().attr("href");
+        String url = src.select("a").attr("href");
 
         String price = src.select("span.price-tag-symbol").first().text()
                 + src.select("span.price-tag-fraction").first().text();
@@ -40,11 +40,16 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         String description = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
                 .replace(",", " ").replace("\"", "");
         String imageUrl = src.select("img.ui-pdp-image.ui-pdp-gallery__figure__image").attr("src");
-        String sellerUrl = src.select("a.ui-pdp-media__action.ui-box-component__action").first().attr("href");
+        String sellerUrl = src.select("a.ui-pdp-media__action.ui-box-component__action").attr("href");
 
-
-        src = Jsoup.connect(sellerUrl).get();
-        String seller = src.select("div.store-info-title > h3.store-info__name").text();
+        String seller;
+        if (!sellerUrl.isEmpty()){
+            src = Jsoup.connect(sellerUrl).get();
+            seller = src.select("div.store-info-title > h3.store-info__name").text();
+        }
+        else{
+            seller="Seller Not Available";
+        }
 
         postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
 
