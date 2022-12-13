@@ -6,8 +6,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
-
 public class DatabaseWriter {
 
     public static void postToDatabase(String captureDate, String marketplace, Integer idx, String title, String description
@@ -26,8 +24,7 @@ public class DatabaseWriter {
                     + "\",\"price\":\"" + price
                     + "\",\"seller\":\"" + seller
                     + "\",\"paid_search\":\"" + paidSearch
-                    + "\",\"status\":\"open\",\"state\":\"new\",\"account_id\":\""
-                    + getAllBrandTracks().get().getAccountId() + "\"}";
+                    + "\",\"status\":\"open\",\"state\":\"new\"}";
             StringEntity entity = new StringEntity(json, "UTF-8");
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");
