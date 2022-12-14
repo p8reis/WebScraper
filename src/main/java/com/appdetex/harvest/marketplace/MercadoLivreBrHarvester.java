@@ -34,7 +34,15 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
             title = src.select(".ui-search-item__title.shops__item-title").text().replace(",", "");
         }
 
-        String paidSearch = String.valueOf(url.contains("is_advertising=true"));
+        String paidSearchFinder = src.select("a.ui-search-item__ad-link.ui-search-link").attr("href");
+        String paidSearchFinder2 = src.select("div.ui-search-item__ad-container > span.ui-search-item__ad-label.ui-search-item__ad-label--blue").text();
+        String paidSearch = "false";
+
+        if (paidSearchFinder.startsWith("https://ads.mercadolivre") || !paidSearchFinder2.isEmpty()){
+            paidSearch="true";
+        }
+        System.out.println(paidSearchFinder);
+        System.out.println(paidSearchFinder2);
 
         src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
         String description = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
