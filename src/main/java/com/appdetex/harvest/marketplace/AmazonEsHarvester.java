@@ -24,22 +24,14 @@ public class AmazonEsHarvester extends AbstractHarvester {
 
         String captureDate = getCaptureDate();
         String marketplace = "AmazonES";
-
         String url = "https://www.amazon.es" + src.select("a").attr("href");
-
         String imageUrl = src.select("img.s-image").attr("src");
-
         String price = src.select("span.a-price-symbol").text() +
                 src.select("span.a-price-whole").text().replace(".", "").replace(",", ".");
-
         String title = src.select("span.a-size-base-plus").text();
-
         String paidSearch = String.valueOf(!("".equals(src.select("a.s-sponsored-label-text").text())));
-
         src = Jsoup.connect(url).userAgent("Mozilla/5.0 (Windows NT 6.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0").get();
-
         String description = src.select("ul.a-unordered-list.a-vertical.a-spacing-mini").text().replace(",", "").replace("\"", "");;
-
         String seller = src.select("div.tabular-buybox-text span.a-size-small a").text();
         if (seller.isEmpty()) {
             seller = src.select("div#bylineInfo_feature_div.celwidget").text()
