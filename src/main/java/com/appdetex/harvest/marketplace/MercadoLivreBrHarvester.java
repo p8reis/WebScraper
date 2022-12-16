@@ -8,6 +8,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static com.appdetex.harvest.database.DatabaseWriter.postToDatabase;
 
 public class MercadoLivreBrHarvester extends AbstractHarvester {
@@ -62,14 +65,24 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         else{
             seller = src.select("div.ui-seller-info > div.ui-pdp-seller__header.ui-pdp-seller__header--margin > div.ui-pdp-seller__header__info-container > div.ui-pdp-seller__header__title").text();
             if (!seller.isEmpty()){
-                seller=src.select("div.ui-vip-profile-info__info-container > div.ui-vip-profile-info__info-link > h3.ui-pdp-color--BLACK.ui-pdp-size--LARGE.ui-pdp-family--REGULAR").text();
-            }
-            else{
-                seller="Seller Not Available";
+                seller = src.select("div.ui-vip-profile-info__info-container > div.ui-vip-profile-info__info-link > h3.ui-pdp-color--BLACK.ui-pdp-size--LARGE.ui-pdp-family--REGULAR").text();
             }
         }
+
+        url = getShortUrl(url);
+
         postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
 
         return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
         }
+
+    private static String getShortUrl(String url) {
+        Pattern pattern = Pattern.compile("(https://produto\\.mercadolivre\\.com\\.br/)?(MLB\\-)(\\w*)(?:\\-)(?:.*)/?");
+        Matcher matcher = pattern.matcher(url);
+        while (matcher.find()) {
+            url = matcher.group(1) + matcher.group(2).replace("%2F", "/") + matcher.group(3);
+        }
+        return url;
     }
+}
+
