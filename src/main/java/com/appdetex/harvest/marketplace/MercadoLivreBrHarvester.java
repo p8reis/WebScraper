@@ -34,31 +34,37 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
             title = src.select(".ui-search-item__title.shops__item-title").text().replace(",", "");
         }
 
-        String paidSearchFinder = src.select("a.ui-search-item__ad-link.ui-search-link").attr("href");
-        String paidSearchFinder2 = src.select("div.ui-search-item__ad-container > span.ui-search-item__ad-label.ui-search-item__ad-label--blue").text();
+        String paidSearchFinder = src.select("div.ui-search-item__ad-container > span.ui-search-item__ad-label.ui-search-item__ad-label--blue").text();
+        String paidSearchFinder2 = src.select(" div.ui-search-result__content-wrapper.shops__result-content-wrapper > div.ui-search-item__ad-container > a.ui-search-item__ad-link.ui-search-link > span.ui-search-item__ad-label.ui-search-item__ad-label--blue").text();
         String paidSearch = "false";
 
-        if (paidSearchFinder.startsWith("https://ads.mercadolivre") || !paidSearchFinder2.isEmpty()){
+        //
+
+        if (!paidSearchFinder.isEmpty() || !paidSearchFinder2.isEmpty()){
             paidSearch="true";
         }
-        System.out.println(paidSearchFinder);
-        System.out.println(paidSearchFinder2);
 
         src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
+
         String description = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
                 .replace(",", " ").replace("\"", "");
+
         String imageUrl = src.select("img.ui-pdp-image.ui-pdp-gallery__figure__image").attr("src");
+
         String sellerUrl = src.select("a.ui-pdp-media__action.ui-box-component__action").attr("href");
 
         String seller;
+
         if (!sellerUrl.isEmpty()){
             src = Jsoup.connect(sellerUrl).get();
             seller = src.select("div.store-info-title > h3.store-info__name").text();
         }
         else{
-            seller="Seller Not Available";
+            seller = src.select("div.ui-seller-info > div.ui-pdp-seller__header.ui-pdp-seller__header--margin > div.ui-pdp-seller__header__info-container > div.ui-pdp-seller__header__title").text();
+            if (!seller.isEmpty()){
+                seller=src.select("div.ui-vip-profile-info__info-container > div.ui-vip-profile-info__info-link > h3.ui-pdp-color--BLACK.ui-pdp-size--LARGE.ui-pdp-family--REGULAR").text();
+            }
         }
-
         postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
 
         return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
