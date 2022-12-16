@@ -13,7 +13,7 @@ import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
 
 public class DatabaseWriter {
 
-    public static Integer numItems = 5;
+    public static Integer numItems = 3;
     public static Integer  it;
     public void runHarvest() throws Exception {
         for (it = 0; it < getAllBrandTracks().size(); it++) {
