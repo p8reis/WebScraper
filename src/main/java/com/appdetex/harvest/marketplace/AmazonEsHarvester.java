@@ -12,8 +12,6 @@ import org.jsoup.select.Elements;
 
 public class AmazonEsHarvester extends AbstractHarvester {
 
-    Pattern pattern = Pattern.compile("(https://www\\.amazon\\.es)?(?:.*)((?:/|%2F)dp(?:/|%2F))(\\w*)(?:/|%2F)(?:.*)/?");
-
     public AmazonEsHarvester() { super("https://www.amazon.es/s?k=%s"); }
 
     @Override
@@ -28,10 +26,6 @@ public class AmazonEsHarvester extends AbstractHarvester {
         String marketplace = "AmazonES";
 
         String url = "https://www.amazon.es" + src.select("a").attr("href");
-        Matcher matcher = pattern.matcher(url);
-        while (matcher.find()) {
-            url = matcher.group(1) + matcher.group(2).replace("%2F", "/") + matcher.group(3);
-        }
 
         String imageUrl = src.select("img.s-image").attr("src");
 
@@ -53,9 +47,20 @@ public class AmazonEsHarvester extends AbstractHarvester {
                     .replace("Marca: ", "");
         }
 
+        url = getShortUrl(url);
+
         postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
 
         return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
+    }
+
+    private static String getShortUrl(String url) {
+        Pattern pattern = Pattern.compile("(https://www\\.amazon\\.es)?(?:.*)((?:/|%2F)dp(?:/|%2F))(\\w*)(?:/|%2F)(?:.*)/?");
+        Matcher matcher = pattern.matcher(url);
+        while (matcher.find()) {
+            url = matcher.group(1) + matcher.group(2).replace("%2F", "/") + matcher.group(3);
+        }
+        return url;
     }
 
 }
