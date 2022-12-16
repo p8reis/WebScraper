@@ -44,7 +44,7 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
             paidSearch="true";
         }
 
-        src = Jsoup.connect(url).userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; TNJB; rv:11.0) like Gecko").get();
+        src = Jsoup.connect(url).userAgent("Mozilla/5.0 (Windows NT 6.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0").get();
 
         String description = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
                 .replace(",", " ").replace("\"", "");
