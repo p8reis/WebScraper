@@ -1,11 +1,5 @@
 package com.appdetex.harvest.api;
 
-import com.appdetex.harvest.database.DatabaseReader;
-import com.appdetex.harvest.marketplace.*;
-
-import java.util.List;
-
-import static com.appdetex.harvest.database.DatabaseReader.getAllAccounts;
 import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
 
 
@@ -21,9 +15,6 @@ public class Main {
         System.out.println("Decathlon PT harvest is completed");
         new MercadoLivreBrHarvester().parseTarget(term, numItems);
         System.out.println("Mercado Livre BR harvest is completed");*/
-
-        for (int i = 0; i < getAllAccounts().size(); i++) {
-            System.out.println(getAllAccounts().get(i).getName()); }
 
         getAllBrandTracks();
 
