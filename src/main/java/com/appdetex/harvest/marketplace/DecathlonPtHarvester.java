@@ -27,7 +27,7 @@ public class DecathlonPtHarvester extends AbstractHarvester {
         String title = src.select(".vtmn-p-0.vtmn-m-0.vtmn-text-sm.vtmn-font-normal.vtmn-overflow-hidden.vtmn-text-ellipsis.svelte-1l3biyf").text().replace(",", " ");
         String seller = src.getElementsByClass("svelte-ht6pwr").text().replace("Vendido e expedido por ","");
 
-        src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
+        src = Jsoup.connect(url).userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; TNJB; rv:11.0) like Gecko").get();
         String imageUrl = src.select(".svelte-w1lrdd").attr("abs:src");
         String description = src.select(".svelte-1uw9j0x").text().replace(",", " ").replace("\"", "");;
         String price = src.select("div.prc__active-price.svelte-t8m03u").text().replace(",", ".");

@@ -13,7 +13,7 @@ import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
 
 public class DatabaseWriter {
 
-    public static Integer numItems = 10;
+    public static Integer numItems = 5;
     public static Integer  it;
     public void runHarvest() throws Exception {
         for (it = 0; it < getAllBrandTracks().size(); it++) {
@@ -33,7 +33,7 @@ public class DatabaseWriter {
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            HttpPost httpPost = new HttpPost("http://localhost:8081/api/marketplacedetections/create");
+            HttpPost httpPost = new HttpPost("http://localhost:8008/api/marketplacedetections/create");
             String json = "{\"capture_date\":\"" + captureDate
                     + "\",\"marketplace\":\"" + marketplace
                     + "\",\"order_on_page\":\"" + idx

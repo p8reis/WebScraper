@@ -25,7 +25,6 @@ public class AmazonEsHarvester extends AbstractHarvester {
     protected MarketplaceDetection createDetection(Element src, int idx) throws Exception {
 
         String captureDate = getCaptureDate();
-
         String marketplace = "AmazonES";
 
         String url = "https://www.amazon.es" + src.select("a").attr("href");
@@ -43,7 +42,7 @@ public class AmazonEsHarvester extends AbstractHarvester {
 
         String paidSearch = String.valueOf(!("".equals(src.select("a.s-sponsored-label-text").text())));
 
-        src = Jsoup.connect(url).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
+        src = Jsoup.connect(url).userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; TNJB; rv:11.0) like Gecko").get();
 
         String description = src.select("ul.a-unordered-list.a-vertical.a-spacing-mini").text().replace(",", "").replace("\"", "");;
 

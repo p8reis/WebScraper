@@ -28,7 +28,7 @@ public abstract class AbstractHarvester implements MarketplaceHarvester {
         Document doc = null;
         try {
             String targetUrl = String.format(this.baseUrl, term);
-            doc = Jsoup.connect(targetUrl).userAgent("justatest").get();
+            doc = Jsoup.connect(targetUrl).userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; TNJB; rv:11.0) like Gecko").get();
             return parseTargetInternal(doc, numItems);
         } catch (IOException e) {
             e.printStackTrace();
