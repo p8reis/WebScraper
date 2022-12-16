@@ -61,11 +61,12 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         }
         else{
             seller = src.select("div.ui-seller-info > div.ui-pdp-seller__header.ui-pdp-seller__header--margin > div.ui-pdp-seller__header__info-container > div.ui-pdp-seller__header__title").text();
-            if (!seller.isEmpty()){
-                seller=src.select("div.ui-vip-profile-info__info-container > div.ui-vip-profile-info__info-link > h3.ui-pdp-color--BLACK.ui-pdp-size--LARGE.ui-pdp-family--REGULAR").text();
+
+            if (seller.isEmpty()){
+                seller="Seller Not Available";
             }
             else{
-                seller="Seller Not Available";
+                seller=src.select("div.ui-vip-profile-info__info-container > div.ui-vip-profile-info__info-link > h3.ui-pdp-color--BLACK.ui-pdp-size--LARGE.ui-pdp-family--REGULAR").text();
             }
         }
         postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
