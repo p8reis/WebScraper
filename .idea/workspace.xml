@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="updates menu; adds database updater" />
+    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="merges into master">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -398,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668441599718</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="merges into master">
+      <created>1671449708698</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1671449708698</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -413,7 +424,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add files" />
     <MESSAGE value="updates Main.java" />
     <MESSAGE value="Adds DatabaseExporter empty file" />
     <MESSAGE value="Adds HTTPCLient dependency to pom.xml" />
@@ -438,6 +448,11 @@
     <MESSAGE value="adds menu" />
     <MESSAGE value="updates menu" />
     <MESSAGE value="updates menu; adds database updater" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates menu; adds database updater" />
+    <MESSAGE value="merges into master" />
+    <option name="LAST_COMMIT_MESSAGE" value="merges into master" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
