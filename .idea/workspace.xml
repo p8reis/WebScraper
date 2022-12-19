@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="updates random files">
+    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="no more snake case">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web_Scraping.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/api/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/api/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader$BrandTrack.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader$BrandTrack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -428,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671450003614</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="no more snake case">
+      <created>1671460168326</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1671460168326</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,7 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adds HTTPCLient dependency to pom.xml" />
     <MESSAGE value="Updates Main and DatabaseExporter" />
     <MESSAGE value="Updates PaidSearch to Boolean&#10;Adds initial marketplace exporter" />
     <MESSAGE value="Adds requests to operate with Analysts table" />
@@ -468,7 +467,8 @@
     <MESSAGE value="merges into master" />
     <MESSAGE value="updates .gitignore" />
     <MESSAGE value="updates random files" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates random files" />
+    <MESSAGE value="no more snake case" />
+    <option name="LAST_COMMIT_MESSAGE" value="no more snake case" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
