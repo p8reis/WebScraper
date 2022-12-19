@@ -20,7 +20,6 @@ public class UserAgents {
     public String getRandomUserAgent() throws Exception {
 
         int randomIndex = ThreadLocalRandom.current().nextInt(0, userAgentsList.size());
-        System.out.println(userAgentsList.get(randomIndex));
         return userAgentsList.get(randomIndex);
     }
 }

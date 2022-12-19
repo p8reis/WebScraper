@@ -11,7 +11,7 @@ public class Main {
         try {
             System.out.println("Time is "+ new Date());
             DatabaseWriter databaseWriter = new DatabaseWriter();
-            databaseWriter.runHarvest();
+            databaseWriter.runHarvest(10);
             System.out.println("Harvest done");
         } catch (Exception e) {
             throw new RuntimeException(e);

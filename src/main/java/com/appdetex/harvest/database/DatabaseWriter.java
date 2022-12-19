@@ -12,10 +12,9 @@ import org.apache.http.impl.client.HttpClients;
 import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
 
 public class DatabaseWriter {
+    public static Integer it;
 
-    public static Integer numItems = 2;
-    public static Integer  it;
-    public void runHarvest() throws Exception {
+    public void runHarvest(int numItems) throws Exception {
         for (it = 0; it < getAllBrandTracks().size(); it++) {
             String term = getAllBrandTracks().get(it).getSearch_term();
             new AmazonEsHarvester().parseTarget(term, numItems);
