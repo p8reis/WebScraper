@@ -1,6 +1,5 @@
 package com.appdetex.harvest.marketplace;
 
-import com.appdetex.harvest.api.HarvestException;
 import com.appdetex.harvest.api.MarketplaceDetection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -33,8 +32,8 @@ abstract class AbstractHarvesterTest {
             detections = harvester.parseTargetInternal(doc, numResults);
             Assertions.assertNotNull(detections);
             Assertions.assertTrue(detections.size() <= numResults, "Expecting " + numResults);
-        } catch (HarvestException e) { throw new RuntimeException(e);
-        } catch (IOException e) { throw new RuntimeException(e); }
+        } catch (Exception e) { throw new RuntimeException(e);
+        }
     }
 
     private Document getHtml(String fileName) {

@@ -1,22 +1,20 @@
 package com.appdetex.harvest.api;
 
-import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
+import com.appdetex.harvest.database.DatabaseWriter;
 
+import java.util.Date;
 
 public class Main {
 
-    public static Integer numItems = 5;
-    public static String term = "jacuzzi";
     public static void main(String[] args) throws Exception {
 
-        /*new AmazonEsHarvester().parseTarget(term,numItems);
-        System.out.println("Amazon ES harvest is completed");
-        new DecathlonPtHarvester().parseTarget(term, numItems);
-        System.out.println("Decathlon PT harvest is completed");
-        new MercadoLivreBrHarvester().parseTarget(term, numItems);
-        System.out.println("Mercado Livre BR harvest is completed");*/
-
-        getAllBrandTracks();
-
+        try {
+            System.out.println("Time is "+ new Date());
+            DatabaseWriter databaseWriter = new DatabaseWriter();
+            databaseWriter.runHarvest();
+            System.out.println("Harvest done");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

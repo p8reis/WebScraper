@@ -3,6 +3,7 @@ package com.appdetex.harvest.marketplace;
 import com.appdetex.harvest.api.MarketplaceDetection;
 import com.appdetex.harvest.api.MarketplaceHarvester;
 
+import com.appdetex.harvest.database.UserAgents;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,8 +18,9 @@ import java.util.List;
 public abstract class AbstractHarvester implements MarketplaceHarvester {
 
     private String baseUrl;
+    protected UserAgents userAgent = new UserAgents();
 
-    public AbstractHarvester(String baseUrl) {
+    public AbstractHarvester(String baseUrl) throws IOException {
         this.baseUrl = baseUrl;
     }
 
@@ -26,9 +28,10 @@ public abstract class AbstractHarvester implements MarketplaceHarvester {
     public List<MarketplaceDetection> parseTarget(String term, int numItems) throws Exception {
 
         Document doc = null;
+
         try {
             String targetUrl = String.format(this.baseUrl, term);
-            doc = Jsoup.connect(targetUrl).userAgent("Mozilla/5.0 Chrome/26.0.1410.64 Safari/537.31").get();
+            doc = Jsoup.connect(targetUrl).userAgent(userAgent.getRandomUserAgent()).get();
             return parseTargetInternal(doc, numItems);
         } catch (IOException e) {
             e.printStackTrace();
