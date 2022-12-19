@@ -44,8 +44,9 @@ public class DatabaseWriter {
                     + "\",\"price\":\"" + price
                     + "\",\"seller\":\"" + seller
                     + "\",\"paid_search\":\"" + paidSearch
-                    + "\",\"status\":\"open\",\"state\":\"new\",\"account_id\":\""
-                    + getAllBrandTracks().get(it).getAccountId() + "\"}";
+                    + "\",\"status\":\"open"
+                    + "\",\"state\":\"new"
+                    + "\",\"account_id\":\"" + getAllBrandTracks().get(it).getAccountId() + "\"}";
             StringEntity entity = new StringEntity(json, "UTF-8");
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");

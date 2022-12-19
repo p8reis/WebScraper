@@ -8,6 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,7 +16,7 @@ import static com.appdetex.harvest.database.DatabaseWriter.postToDatabase;
 
 public class MercadoLivreBrHarvester extends AbstractHarvester {
 
-    public MercadoLivreBrHarvester() { super("https://lista.mercadolivre.com.br/%s"); }
+    public MercadoLivreBrHarvester() throws IOException { super("https://lista.mercadolivre.com.br/%s"); }
 
     @Override
     protected Elements getListingElements(Document doc) {
@@ -47,7 +48,11 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
             paidSearch="true";
         }
 
-        src = Jsoup.connect(url).userAgent("Mozilla/5.0 (Windows NT 6.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0").get();
+        // Since we're making two jsoup connections almost one after the other, then we don't need to
+        // generate a random user agent for each (#performance)
+        String randomUserAgent = userAgent.getRandomUserAgent();
+
+        src = Jsoup.connect(url).userAgent(randomUserAgent).get();
 
         String description = src.select("div.ui-pdp-description > p.ui-pdp-description__content").text()
                 .replace(",", " ").replace("\"", "");
@@ -59,7 +64,7 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         String seller;
 
         if (!sellerUrl.isEmpty()){
-            src = Jsoup.connect(sellerUrl).get();
+            src = Jsoup.connect(sellerUrl).userAgent(randomUserAgent).get();
             seller = src.select("div.store-info-title > h3.store-info__name").text();
         }
         else{

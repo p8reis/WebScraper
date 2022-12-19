@@ -3,8 +3,10 @@ package com.appdetex.harvest.marketplace;
 import com.appdetex.harvest.api.MarketplaceDetection;
 import static com.appdetex.harvest.database.DatabaseWriter.postToDatabase;
 
+import java.io.IOException;
 import java.util.regex.*;
 
+import com.appdetex.harvest.database.UserAgents;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,7 +14,7 @@ import org.jsoup.select.Elements;
 
 public class AmazonEsHarvester extends AbstractHarvester {
 
-    public AmazonEsHarvester() { super("https://www.amazon.es/s?k=%s"); }
+    public AmazonEsHarvester() throws IOException { super("https://www.amazon.es/s?k=%s"); }
 
     @Override
     protected Elements getListingElements(Document doc) {
@@ -30,7 +32,7 @@ public class AmazonEsHarvester extends AbstractHarvester {
                 src.select("span.a-price-whole").text().replace(".", "").replace(",", ".");
         String title = src.select("span.a-size-base-plus").text();
         String paidSearch = String.valueOf(!("".equals(src.select("a.s-sponsored-label-text").text())));
-        src = Jsoup.connect(url).userAgent("Mozilla/5.0 (Windows NT 6.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0").get();
+        src = Jsoup.connect(url).userAgent(userAgent.getRandomUserAgent()).get();
         String description = src.select("ul.a-unordered-list.a-vertical.a-spacing-mini").text().replace(",", "").replace("\"", "");;
         String seller = src.select("div.tabular-buybox-text span.a-size-small a").text();
         if (seller.isEmpty()) {
