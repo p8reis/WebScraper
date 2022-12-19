@@ -27,10 +27,10 @@ public class DatabaseReader {
     public static class BrandTrack {
 
         private Integer id;
-        private String search_term;
+        private String searchTerm;
         private Integer accountId;
         public Integer getId() { return id; }
-        public String getSearch_term() { return search_term; }
+        public String getSearchTerm() { return searchTerm; }
         public Integer getAccountId() { return accountId; }
 
     }
@@ -46,7 +46,6 @@ public class DatabaseReader {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         List<BrandTrack> brandTracksList = mapper.readValue(allBrandTracks, new TypeReference<List<BrandTrack>>(){});
-
         return brandTracksList;
     }
 

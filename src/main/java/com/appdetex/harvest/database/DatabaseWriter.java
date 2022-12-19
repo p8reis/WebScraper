@@ -16,13 +16,13 @@ public class DatabaseWriter {
 
     public void runHarvest(int numItems) throws Exception {
         for (it = 0; it < getAllBrandTracks().size(); it++) {
-            String term = getAllBrandTracks().get(it).getSearch_term();
+            String term = getAllBrandTracks().get(it).getSearchTerm();
             new AmazonEsHarvester().parseTarget(term, numItems);
             System.out.println("Amazon ES harvest is completed");
             new DecathlonPtHarvester().parseTarget(term, numItems);
             System.out.println("Decathlon PT harvest is completed");
-            new MercadoLivreBrHarvester().parseTarget(term, numItems);
-            System.out.println("Mercado Livre BR harvest is completed");
+            //new MercadoLivreBrHarvester().parseTarget(term, numItems);
+            //System.out.println("Mercado Livre BR harvest is completed");
         }
     }
 
@@ -33,19 +33,20 @@ public class DatabaseWriter {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
             HttpPost httpPost = new HttpPost("http://localhost:8008/api/marketplacedetections/create");
-            String json = "{\"capture_date\":\"" + captureDate
+            String json = "{\"captureDate\":\"" + captureDate
                     + "\",\"marketplace\":\"" + marketplace
-                    + "\",\"order_on_page\":\"" + idx
+                    + "\",\"orderOnPage\":\"" + idx
                     + "\",\"title\":\"" + title
                     + "\",\"description\":\"" + description
                     + "\",\"url\":\"" + url
-                    + "\",\"image_url\":\"" + imageUrl
+                    + "\",\"imageUrl\":\"" + imageUrl
                     + "\",\"price\":\"" + price
                     + "\",\"seller\":\"" + seller
-                    + "\",\"paid_search\":\"" + paidSearch
+                    + "\",\"paidSearch\":\"" + paidSearch
                     + "\",\"status\":\"open"
                     + "\",\"state\":\"new"
-                    + "\",\"account_id\":\"" + getAllBrandTracks().get(it).getAccountId() + "\"}";
+                    + "\",\"accountId\":\"" + getAllBrandTracks().get(it).getAccountId() + "\"}";
+            System.out.println(json);
             StringEntity entity = new StringEntity(json, "UTF-8");
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");

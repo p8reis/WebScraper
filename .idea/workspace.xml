@@ -6,12 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="updates random files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web_Scraping.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/UserAgents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/UserAgents.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/api/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/api/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader$BrandTrack.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader$BrandTrack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/UserAgents.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/UserAgents.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,9 +42,8 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="showDialogWithAdvancedSettings" value="true" />
         <option name="useMavenConfig" value="true" />
-        <option name="usePluginRegistry" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -54,17 +55,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/pedro.reis/Desktop/Java Projects/WebScraper&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-19",
+    "last_opened_file_path": "/Users/joana.camacho/IdeaProjects/WebScraper",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "MavenSettings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.appdetex.harvest.api" />
@@ -76,7 +78,6 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.appdetex.harvest.api.Main" />
-      <module name="Web_Scraping" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.appdetex.harvest.api.*" />
