@@ -10,7 +10,7 @@ public class UserAgents {
     private ArrayList<String> userAgentsList = new ArrayList<>();
 
     public UserAgents() throws IOException {
-        Scanner txtFile = new Scanner(new File("userAgents.txt"));
+        Scanner txtFile = new Scanner(new File("WebScraper/userAgents.txt"));
         while (txtFile.hasNextLine()) {
             String line = txtFile.nextLine();
             userAgentsList.add(line);

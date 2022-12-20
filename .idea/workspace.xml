@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="no more snake case">
+    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="updated version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,14 +50,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "openjdk-19",
     "last_opened_file_path": "/Users/joana.camacho/IdeaProjects/WebScraper",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -71,25 +75,13 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.appdetex.harvest.api.Main" />
+      <module name="Web_Scraping" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.appdetex.harvest.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="WebScraper" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="WebScraper" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,6 +104,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667384141990</updated>
+      <workItem from="1671534974946" duration="28000" />
     </task>
     <task id="LOCAL-00001" summary="Adds .gitignore">
       <created>1667384166573</created>
@@ -430,6 +423,9 @@
     </task>
     <option name="localTasksCounter" value="46" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

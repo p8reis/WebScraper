@@ -17,7 +17,7 @@ public class DatabaseWriter {
     public void runHarvest(int numItems) throws Exception {
         for (it = 0; it < getAllBrandTracks().size(); it++) {
             String term = getAllBrandTracks().get(it).getSearchTerm();
-            new AmazonEsHarvester().parseTarget(term, numItems);
+            //new AmazonEsHarvester().parseTarget(term, numItems);
             System.out.println("Amazon ES harvest is completed");
             new DecathlonPtHarvester().parseTarget(term, numItems);
             System.out.println("Decathlon PT harvest is completed");
