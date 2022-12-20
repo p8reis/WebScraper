@@ -45,7 +45,8 @@ public class DatabaseWriter {
                     + "\",\"paidSearch\":\"" + paidSearch
                     + "\",\"status\":\"open"
                     + "\",\"state\":\"new"
-                    + "\",\"accountId\":\"" + getAllBrandTracks().get(it).getAccountId() + "\"}";
+                    + "\",\"accountId\":\"" + getAllBrandTracks().get(it).getAccountId()
+                    + "\",\"searchTerm\":\"" + getAllBrandTracks().get(it).getSearchTerm() + "\"}";
             System.out.println(json);
             StringEntity entity = new StringEntity(json, "UTF-8");
             httpPost.setEntity(entity);
