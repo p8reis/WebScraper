@@ -16,8 +16,6 @@ public class DatabaseWriter {
 
     public void runHarvest(int numItems) throws Exception {
 
-        DatabaseReader databaseReader = new DatabaseReader();
-
         for (it = 0; it < getAllBrandTracks().size(); it++) {
             String term = getAllBrandTracks().get(it).getSearchTerm();
             new AmazonEsHarvester().parseTarget(term, numItems);
