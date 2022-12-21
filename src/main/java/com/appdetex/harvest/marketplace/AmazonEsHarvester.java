@@ -26,7 +26,9 @@ public class AmazonEsHarvester extends AbstractHarvester {
 
         String captureDate = getCaptureDate();
         String marketplace = "AmazonES";
-        String url = "https://www.amazon.es" + src.select("a").attr("href");
+        String url = src.select("a").attr("href");
+        if (!url.startsWith("https://www.amazon.es")) { url = "https://www.amazon.es" + url; }
+        System.out.println(url);
         String imageUrl = src.select("img.s-image").attr("src");
         String price = src.select("span.a-price-symbol").text() +
                 src.select("span.a-price-whole").text().replace(".", "").replace(",", ".");

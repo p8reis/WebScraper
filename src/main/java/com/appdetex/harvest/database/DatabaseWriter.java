@@ -15,20 +15,22 @@ public class DatabaseWriter {
     public static Integer it;
 
     public void runHarvest(int numItems) throws Exception {
+
+        DatabaseReader databaseReader = new DatabaseReader();
+
         for (it = 0; it < getAllBrandTracks().size(); it++) {
             String term = getAllBrandTracks().get(it).getSearchTerm();
             new AmazonEsHarvester().parseTarget(term, numItems);
-            System.out.println("Amazon ES harvest is completed");
+            System.out.println("AmazonES harvest finished for brand track: " + term);
             new DecathlonPtHarvester().parseTarget(term, numItems);
-            System.out.println("Decathlon PT harvest is completed");
+            System.out.println("DecathlonPT harvest finished for brand track: " + term);
             new MercadoLivreBrHarvester().parseTarget(term, numItems);
-            System.out.println("Mercado Livre BR harvest is completed");
+            System.out.println("MercadoLivreBR harvest finished for brand track: " + term);
         }
     }
 
     public static void postToDatabase(String captureDate, String marketplace, Integer idx, String title, String description
             , String url, String imageUrl, String price, String seller, String paidSearch) throws Exception {
-
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 

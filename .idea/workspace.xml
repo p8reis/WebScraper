@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="adding search_term column to detections table">
+    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="fixing API calls">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/AmazonEsHarvester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/AmazonEsHarvester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/api/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/api/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +77,10 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.appdetex.harvest.api.Main" />
+      <module name="Web_Scraping" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.appdetex.harvest.api.*" />
@@ -438,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671464630259</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="fixing API calls">
+      <created>1671558586865</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1671558586865</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -453,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updates PaidSearch to Boolean&#10;Adds initial marketplace exporter" />
     <MESSAGE value="Adds requests to operate with Analysts table" />
     <MESSAGE value="corrects mercado livre" />
     <MESSAGE value="ok" />
@@ -478,7 +491,38 @@
     <MESSAGE value="updates random files" />
     <MESSAGE value="no more snake case" />
     <MESSAGE value="adding search_term column to detections table" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding search_term column to detections table" />
+    <MESSAGE value="fixing API calls" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing API calls" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.net.UnknownHostException" package="java.net" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/AmazonEsHarvester.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/DecathlonPtHarvester.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/UserAgents.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

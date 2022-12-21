@@ -42,14 +42,10 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         String paidSearchFinder2 = src.select(" div.ui-search-result__content-wrapper.shops__result-content-wrapper > div.ui-search-item__ad-container > a.ui-search-item__ad-link.ui-search-link > span.ui-search-item__ad-label.ui-search-item__ad-label--blue").text();
         String paidSearch = "false";
 
-        //
-
-        if (!paidSearchFinder.isEmpty() || !paidSearchFinder2.isEmpty()){
-            paidSearch="true";
+        if (!paidSearchFinder.isEmpty() || !paidSearchFinder2.isEmpty()) {
+            paidSearch = "true";
         }
 
-        // Since we're making two jsoup connections almost one after the other, then we don't need to
-        // generate a random user agent for each (#performance)
         String randomUserAgent = userAgent.getRandomUserAgent();
 
         src = Jsoup.connect(url).userAgent(randomUserAgent).get();
