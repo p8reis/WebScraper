@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         DatabaseWriter databaseWriter = new DatabaseWriter();
-        databaseWriter.runHarvest(2);
+        databaseWriter.runHarvest(5);
         System.out.println("Harvest done");
 
     }

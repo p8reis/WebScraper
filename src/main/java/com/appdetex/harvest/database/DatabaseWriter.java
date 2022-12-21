@@ -21,8 +21,8 @@ public class DatabaseWriter {
             System.out.println("Amazon ES harvest is completed");
             new DecathlonPtHarvester().parseTarget(term, numItems);
             System.out.println("Decathlon PT harvest is completed");
-            //new MercadoLivreBrHarvester().parseTarget(term, numItems);
-            //System.out.println("Mercado Livre BR harvest is completed");
+            new MercadoLivreBrHarvester().parseTarget(term, numItems);
+            System.out.println("Mercado Livre BR harvest is completed");
         }
     }
 
@@ -32,7 +32,7 @@ public class DatabaseWriter {
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            HttpPost httpPost = new HttpPost("http://localhost:8008/api/marketplacedetections/create");
+            HttpPost httpPost = new HttpPost("http://localhost:8008/api/detections/create");
             String json = "{\"captureDate\":\"" + captureDate
                     + "\",\"marketplace\":\"" + marketplace
                     + "\",\"orderOnPage\":\"" + idx

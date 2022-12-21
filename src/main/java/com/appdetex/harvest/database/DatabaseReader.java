@@ -16,7 +16,7 @@ public class DatabaseReader {
     public static String getAll() throws Exception {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://localhost:8008/api/marketplacedetections/getAll");
+        HttpGet httpGet = new HttpGet("http://localhost:8008/api/detections/getAll");
         HttpResponse httpresponse = httpclient.execute(httpGet);
         Scanner sc = new Scanner(httpresponse.getEntity().getContent());
         String databaseDetections = sc.nextLine();
