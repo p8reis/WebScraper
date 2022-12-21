@@ -18,12 +18,12 @@ public class DatabaseWriter {
 
         for (it = 0; it < getAllBrandTracks().size(); it++) {
             String term = getAllBrandTracks().get(it).getSearchTerm();
-            new AmazonEsHarvester().parseTarget(term, numItems);
-            System.out.println("AmazonES harvest finished for brand track: " + term);
+            //new AmazonEsHarvester().parseTarget(term, numItems);
+            //System.out.println("AmazonES harvest finished for brand track: " + term);
             new DecathlonPtHarvester().parseTarget(term, numItems);
             System.out.println("DecathlonPT harvest finished for brand track: " + term);
-            new MercadoLivreBrHarvester().parseTarget(term, numItems);
-            System.out.println("MercadoLivreBR harvest finished for brand track: " + term);
+            //new MercadoLivreBrHarvester().parseTarget(term, numItems);
+            //System.out.println("MercadoLivreBR harvest finished for brand track: " + term);
         }
     }
 

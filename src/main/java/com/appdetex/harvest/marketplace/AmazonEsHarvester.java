@@ -28,21 +28,18 @@ public class AmazonEsHarvester extends AbstractHarvester {
         String marketplace = "AmazonES";
         String url = src.select("a").attr("href");
         if (!url.startsWith("https://www.amazon.es")) { url = "https://www.amazon.es" + url; }
-        System.out.println(url);
         String imageUrl = src.select("img.s-image").attr("src");
-        String price = src.select("span.a-price-symbol").text() +
-                src.select("span.a-price-whole").text().replace(".", "").replace(",", ".");
+        String price = src.select("span.a-price-symbol").text() + src.select("span.a-price-whole").text();
         String title = src.select("span.a-size-base-plus").text();
         String paidSearch = String.valueOf(!("".equals(src.select("a.s-sponsored-label-text").text())));
         src = Jsoup.connect(url).userAgent(userAgent.getRandomUserAgent()).get();
-        String description = src.select("ul.a-unordered-list.a-vertical.a-spacing-mini").text().replace(",", "").replace("\"", "");;
+        String description = src.select("ul.a-unordered-list.a-vertical.a-spacing-mini").text();
         String seller = src.select("div.tabular-buybox-text span.a-size-small a").text();
         if (seller.isEmpty()) {
             seller = src.select("div#bylineInfo_feature_div.celwidget").text()
                     .replace("Visita la Store de ", "")
                     .replace("Marca: ", "");
         }
-
         url = getShortUrl(url);
 
         postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
