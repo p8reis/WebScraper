@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="no more snake case">
+    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="adding search_term column to detections table">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/AmazonEsHarvester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/AmazonEsHarvester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,18 +51,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "jdk.selected.JAVA_MODULE": "openjdk-19",
-    "last_opened_file_path": "/Users/joana.camacho/IdeaProjects/WebScraper",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/joana.camacho/IdeaProjects/WebScraper&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.appdetex.harvest.api" />
@@ -428,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671460168326</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="adding search_term column to detections table">
+      <created>1671464630258</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1671464630259</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,7 +453,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updates Main and DatabaseExporter" />
     <MESSAGE value="Updates PaidSearch to Boolean&#10;Adds initial marketplace exporter" />
     <MESSAGE value="Adds requests to operate with Analysts table" />
     <MESSAGE value="corrects mercado livre" />
@@ -468,7 +477,8 @@
     <MESSAGE value="updates .gitignore" />
     <MESSAGE value="updates random files" />
     <MESSAGE value="no more snake case" />
-    <option name="LAST_COMMIT_MESSAGE" value="no more snake case" />
+    <MESSAGE value="adding search_term column to detections table" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding search_term column to detections table" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
