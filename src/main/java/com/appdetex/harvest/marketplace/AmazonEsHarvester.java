@@ -42,7 +42,9 @@ public class AmazonEsHarvester extends AbstractHarvester {
         }
         url = getShortUrl(url);
 
-        postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
+        if (!url.contains("/gp/bestsellers/") && !url.contains("/ap/signin")) {
+            postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
+        }
 
         return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
     }
