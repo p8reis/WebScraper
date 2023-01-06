@@ -42,9 +42,10 @@ public class AmazonEsHarvester extends AbstractHarvester {
         Integer accountId = getAllBrandTracks().get(i).getAccountId();
         String searchTerm = getAllBrandTracks().get(i).getSearchTerm();
 
-        //if (!url.contains("/gp/bestsellers/") && !url.contains("/ap/signin"))
-        return new MarketplaceDetectionItem(captureDate, marketplace, orderOnPage, title, description, url, imageUrl, price
-                , paidSearch, seller, status, state, accountId, searchTerm);
+        if (!url.contains("/gp/bestsellers/") && !url.contains("/ap/signin")) {
+            return new MarketplaceDetectionItem(captureDate, marketplace, orderOnPage, title, description, url, imageUrl, price
+                    , paidSearch, seller, status, state, accountId, searchTerm);
+        } else { return null; }
     }
 
     private static String getShortUrl(String url) {
