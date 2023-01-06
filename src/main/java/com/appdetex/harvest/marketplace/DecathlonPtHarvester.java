@@ -22,7 +22,7 @@ public class DecathlonPtHarvester extends AbstractHarvester {
     }
 
     @Override
-    protected MarketplaceDetection createDetection(Element src, int idx) throws Exception {
+    protected MarketplaceDetection createDetection(Element src, int orderOnPage) throws Exception {
 
         String captureDate = getCaptureDate();
         String marketplace = "DecathlonPT";
@@ -41,7 +41,7 @@ public class DecathlonPtHarvester extends AbstractHarvester {
         Integer accountId = getAllBrandTracks().get(i).getAccountId();
         String searchTerm = getAllBrandTracks().get(i).getSearchTerm();
 
-        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price
+        return new MarketplaceDetectionItem(captureDate, marketplace, orderOnPage, title, description, url, imageUrl, price
                 , String.valueOf(Boolean.FALSE), seller, status, state, accountId, searchTerm);
     }
 }

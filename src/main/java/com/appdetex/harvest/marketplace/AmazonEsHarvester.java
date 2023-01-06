@@ -4,12 +4,10 @@ import com.appdetex.harvest.api.MarketplaceDetection;
 
 import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
 import static com.appdetex.harvest.database.DatabaseWriter.i;
-import static com.appdetex.harvest.database.DatabaseWriter.postToDatabase;
 
 import java.io.IOException;
 import java.util.regex.*;
 
-import com.appdetex.harvest.database.UserAgents;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,7 +23,7 @@ public class AmazonEsHarvester extends AbstractHarvester {
     }
 
     @Override
-    protected MarketplaceDetection createDetection(Element src, int idx) throws Exception {
+    protected MarketplaceDetection createDetection(Element src, int orderOnPage) throws Exception {
 
         String captureDate = getCaptureDate();
         String marketplace = "AmazonES";
@@ -44,11 +42,8 @@ public class AmazonEsHarvester extends AbstractHarvester {
         Integer accountId = getAllBrandTracks().get(i).getAccountId();
         String searchTerm = getAllBrandTracks().get(i).getSearchTerm();
 
-        /*if (!url.contains("/gp/bestsellers/") && !url.contains("/ap/signin")) {
-
-        }*/
-
-        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price
+        //if (!url.contains("/gp/bestsellers/") && !url.contains("/ap/signin"))
+        return new MarketplaceDetectionItem(captureDate, marketplace, orderOnPage, title, description, url, imageUrl, price
                 , paidSearch, seller, status, state, accountId, searchTerm);
     }
 

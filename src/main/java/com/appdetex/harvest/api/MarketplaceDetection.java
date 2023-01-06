@@ -4,7 +4,7 @@ public interface MarketplaceDetection {
 
     String getCaptureDate();
     String getMarketplace();
-    Integer getOrder();
+    Integer getOrderOnPage();
     String getTitle();
     String getDescription();
     String getUrl();

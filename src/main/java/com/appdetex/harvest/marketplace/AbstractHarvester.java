@@ -44,10 +44,10 @@ public abstract class AbstractHarvester implements MarketplaceHarvester {
         ArrayList<MarketplaceDetection> detections = new ArrayList<>();
 
         Elements items = getListingElements(doc);
-        int idx = 0;
+        int orderOnPage = 0;
         for (Element src : items) {
-            if (idx == numItems) break;
-            detections.add(createDetection(src, ++idx));
+            if (orderOnPage == numItems) break;
+            detections.add(createDetection(src, ++orderOnPage));
         }
         return detections;
     }

@@ -6,7 +6,7 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
 
     private String captureDate;
     private String marketplace;
-    private Integer order;
+    private Integer orderOnPage;
     private String title;
     private String description;
     private String url;
@@ -19,12 +19,12 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
     private Integer accountId;
     private String searchTerm;
 
-    public MarketplaceDetectionItem(String captureDate, String marketplace, Integer order, String title
+    public MarketplaceDetectionItem(String captureDate, String marketplace, Integer orderOnPage, String title
             , String description, String url, String imageUrl, String price, String paidSearch, String seller
             , String status, String state, Integer accountId, String searchTerm) {
         this.captureDate = captureDate;
         this.marketplace = marketplace;
-        this.order = order;
+        this.orderOnPage = orderOnPage;
         this.title = title;
         this.description = description;
         this.url = url;
@@ -45,8 +45,8 @@ public class MarketplaceDetectionItem implements MarketplaceDetection {
     public String getMarketplace() { return marketplace; }
 
     @Override
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderOnPage() {
+        return orderOnPage;
     }
 
     @Override
