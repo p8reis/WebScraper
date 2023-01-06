@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="fixing price and description for seller &quot;Decathlon&quot;">
+    <list default="true" id="f3af9e87-e292-4f33-91b4-42ca36f2f04b" name="Changes" comment="add validations for Amazon urls (gp/bestsellers and ap/signin)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/MarketplaceDetection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/api/MarketplaceDetection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/DatabaseWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/AmazonEsHarvester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/AmazonEsHarvester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/DecathlonPtHarvester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/DecathlonPtHarvester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/MarketplaceDetectionItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/MarketplaceDetectionItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/api/MarketplaceDetection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/api/MarketplaceDetection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/database/DatabaseWriter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/AmazonEsHarvester.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/AmazonEsHarvester.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/DecathlonPtHarvester.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/DecathlonPtHarvester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/MarketplaceDetectionItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/MarketplaceDetectionItem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,13 +126,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667384141990</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Adds .gitignore">
-      <created>1667384166573</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1667384166573</updated>
     </task>
     <task id="LOCAL-00002" summary="Adds files">
       <created>1667388779598</created>
@@ -464,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671660552182</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="add validations for Amazon urls (gp/bestsellers and ap/signin)">
+      <created>1671703028874</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1671703028875</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +485,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ok" />
     <MESSAGE value="tries to correct amazon" />
     <MESSAGE value="correct amazon" />
     <MESSAGE value="Updates Marketplace Detection put request" />
@@ -504,7 +509,8 @@
     <MESSAGE value="fixing API calls" />
     <MESSAGE value="fixing a problem with Amazon connections" />
     <MESSAGE value="fixing price and description for seller &quot;Decathlon&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing price and description for seller &quot;Decathlon&quot;" />
+    <MESSAGE value="add validations for Amazon urls (gp/bestsellers and ap/signin)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add validations for Amazon urls (gp/bestsellers and ap/signin)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -514,24 +520,24 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/AmazonEsHarvester.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/DecathlonPtHarvester.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/database/UserAgents.java</url>
           <line>22</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/AmazonEsHarvester.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/MercadoLivreBrHarvester.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/appdetex/harvest/marketplace/DecathlonPtHarvester.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

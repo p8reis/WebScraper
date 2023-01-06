@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.appdetex.harvest.database.DatabaseWriter.postToDatabase;
+import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
+import static com.appdetex.harvest.database.DatabaseWriter.i;
 
 public class MercadoLivreBrHarvester extends AbstractHarvester {
 
@@ -47,22 +48,24 @@ public class MercadoLivreBrHarvester extends AbstractHarvester {
         String imageUrl = src.select("img.ui-pdp-image.ui-pdp-gallery__figure__image").attr("src");
         String sellerUrl = src.select("a.ui-pdp-media__action.ui-box-component__action").attr("href");
         String seller;
-        if (!sellerUrl.isEmpty()){
+        if (!sellerUrl.isEmpty()) {
             src = Jsoup.connect(sellerUrl).userAgent(randomUserAgent).get();
             seller = src.select("div.store-info-title > h3.store-info__name").text();
-        }
-        else{
+        } else {
             seller = src.select("div.ui-seller-info > div.ui-pdp-seller__header.ui-pdp-seller__header--margin > div.ui-pdp-seller__header__info-container > div.ui-pdp-seller__header__title").text();
-            if (!seller.isEmpty()){
+            if (!seller.isEmpty()) {
                 seller = src.select("div.ui-vip-profile-info__info-container > div.ui-vip-profile-info__info-link > h3.ui-pdp-color--BLACK.ui-pdp-size--LARGE.ui-pdp-family--REGULAR").text();
             }
         }
         url = getShortUrl(url);
+        String status = "open";
+        String state = "new";
+        Integer accountId = getAllBrandTracks().get(i).getAccountId();
+        String searchTerm = getAllBrandTracks().get(i).getSearchTerm();
 
-        postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
-
-        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
-        }
+        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price
+                , paidSearch, seller, status, state, accountId, searchTerm);
+    }
 
     private static String getShortUrl(String url) {
         Pattern pattern = Pattern.compile("(https://produto\\.mercadolivre\\.com\\.br/)?(MLB\\-)(\\w*)(?:\\-)(?:.*)/?");

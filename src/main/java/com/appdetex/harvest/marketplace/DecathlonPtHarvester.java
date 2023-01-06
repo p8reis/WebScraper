@@ -9,7 +9,8 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-import static com.appdetex.harvest.database.DatabaseWriter.postToDatabase;
+import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
+import static com.appdetex.harvest.database.DatabaseWriter.i;
 
 public class DecathlonPtHarvester extends AbstractHarvester {
 
@@ -35,9 +36,12 @@ public class DecathlonPtHarvester extends AbstractHarvester {
         String price = src.select("div.prc__active-price.svelte-t8m03u").first().text();
         Character currency = price.charAt(price.length() - 1);
         price = (currency + price).substring(0, price.length());
+        String status = "open";
+        String state = "new";
+        Integer accountId = getAllBrandTracks().get(i).getAccountId();
+        String searchTerm = getAllBrandTracks().get(i).getSearchTerm();
 
-        postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, String.valueOf(Boolean.FALSE));
-
-        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, String.valueOf(Boolean.FALSE), seller);
+        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price
+                , String.valueOf(Boolean.FALSE), seller, status, state, accountId, searchTerm);
     }
 }

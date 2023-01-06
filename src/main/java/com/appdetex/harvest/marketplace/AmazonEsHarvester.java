@@ -1,6 +1,9 @@
 package com.appdetex.harvest.marketplace;
 
 import com.appdetex.harvest.api.MarketplaceDetection;
+
+import static com.appdetex.harvest.database.DatabaseReader.getAllBrandTracks;
+import static com.appdetex.harvest.database.DatabaseWriter.i;
 import static com.appdetex.harvest.database.DatabaseWriter.postToDatabase;
 
 import java.io.IOException;
@@ -34,19 +37,19 @@ public class AmazonEsHarvester extends AbstractHarvester {
         String paidSearch = String.valueOf(!("".equals(src.select("a.s-sponsored-label-text").text())));
         src = Jsoup.connect(url).userAgent(userAgent.getRandomUserAgent()).get();
         String description = src.select("ul.a-unordered-list.a-vertical.a-spacing-mini").text();
-        String seller = src.select("div.tabular-buybox-text span.a-size-small a").text();
-        if (seller.isEmpty()) {
-            seller = src.select("div#bylineInfo_feature_div.celwidget").text()
-                    .replace("Visita la Store de ", "")
-                    .replace("Marca: ", "");
-        }
+        String seller = src.select("div.a-section.a-spacing-none > div#merchant-info.a-section.a-spacing-base > a.a-link-normal > span").text();
         url = getShortUrl(url);
+        String status = "open";
+        String state = "new";
+        Integer accountId = getAllBrandTracks().get(i).getAccountId();
+        String searchTerm = getAllBrandTracks().get(i).getSearchTerm();
 
-        if (!url.contains("/gp/bestsellers/") && !url.contains("/ap/signin")) {
-            postToDatabase(captureDate, marketplace, idx, title, description, url, imageUrl, price, seller, paidSearch);
-        }
+        /*if (!url.contains("/gp/bestsellers/") && !url.contains("/ap/signin")) {
 
-        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price, paidSearch, seller);
+        }*/
+
+        return new MarketplaceDetectionItem(captureDate, marketplace, idx, title, description, url, imageUrl, price
+                , paidSearch, seller, status, state, accountId, searchTerm);
     }
 
     private static String getShortUrl(String url) {

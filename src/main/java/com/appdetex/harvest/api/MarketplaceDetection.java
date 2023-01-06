@@ -12,4 +12,9 @@ public interface MarketplaceDetection {
     String getPrice();
     String getPaidSearch();
     String getSeller();
+    String getStatus();
+    String getState();
+    Integer getAccountId();
+    String getSearchTerm();
+
 }
